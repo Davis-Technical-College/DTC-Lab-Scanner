@@ -4,7 +4,7 @@
 - react-native-permissions
 
 # Functions
-Administrator
+### Administrator
 - Manage and view resources, including the following data:
   - QR code
   - Resource name
@@ -13,7 +13,8 @@ Administrator
   - Checkout history
 - Manage users
 - Verify resource checkout upon receiving a request
-User
+
+### User
 - Check out resources
   - Scan QR code
   - View inventory list and report whether anything is missing
