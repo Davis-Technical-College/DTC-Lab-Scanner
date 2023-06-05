@@ -4,6 +4,9 @@
 - react-native-permissions
 - @react-navigation/drawer
 - @react-navigation/native
+- axios
+- expo-app-loading
+- expo-sqlite
 
 # Functions
 ### Administrator
