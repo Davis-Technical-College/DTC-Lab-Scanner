@@ -7,20 +7,38 @@
 
 # Functions
 ### Administrator
-- Manage and view resources, including the following data:
-  - QR code
-  - Resource name
-  - Inventory/components (if relevant)
-  - Current user
-  - Checkout history
-- Manage users
-- Verify resource checkout upon receiving a request
+- Manage and view resources
+- Manage and view users
+- Verify resource check-out upon receiving a request
+- View other alerts, such as missing components or check-out attempt when in use
 
 ### User
 - Check out resources
   - Scan QR code
   - View inventory list and report whether anything is missing
-  - Place request for checkout which must be approved by administrator
+  - Place request for check-out which must be approved by administrator
+
+# Data
+### Resources (e.g. Labkits)
+- Resource ID
+- QR Code
+- Title
+- Inventory/Components
+- Current User
+
+### Users
+- User Level (standard/admin)
+- Name (first + last name, due to classroom setting)
+- Email
+- Student ID (if relevant)
+- Password
+
+### Check-out History
+- Resource ID
+- Student ID
+- Date + Time of Check-out
+- Date + Time of Check-in
+- [NOTE] A record is only added once the resource has been checked in
 
 # Layout
 ### Basic
@@ -55,12 +73,12 @@
   - Shows a list of all resources for the classroom, with options to sort and filter
   - A button is present in the top right corner to add a resource
 - [Admin] Resource Information
-  - Displays relevant information on the selected resource, including checkout history
+  - Displays relevant information on the selected resource, including check-out history
   - Includes buttons to edit or delete
   - Deleting will bring up a prompt, and is not possible while a resource is checked out
 - [Admin] List Users
   - Shows a list of all users, with a button to add one
 - [Admin] User Information
-  - Displays relevant information on the selected user, including current checkouts and history
+  - Displays relevant information on the selected user, including current check-outs and history
   - Includes buttons to edit or delete
   - Deleting will bring up a prompt, and is not possible while the user has a resource checked out
