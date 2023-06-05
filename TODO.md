@@ -63,6 +63,10 @@
 - [ALL] Overview:
   - For a standard user, it shows any resources currently checked out by the user
   - For an admin, it shows any pending requests and alerts, and it lists all resources checked out
+- [ALL] Settings:
+  - Dark mode theme toggle
+  - App feedback button (likely sends an email)
+  - Display app version and author
 - [User] Scan Code:
   - Brings up a QR code scanner, which allows the user to check out a resource
   - If the resource is already checked out, an error message will be shown; the user is given an option to report this to the admins
