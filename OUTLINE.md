@@ -30,6 +30,7 @@
 - Current User
 
 ### Users
+- User ID
 - User Level (standard/admin)
 - Name (first + last name, due to classroom setting)
 - Email
@@ -38,10 +39,21 @@
 
 ### Check-out History
 - Resource ID
-- Student ID
+- User or Student ID
 - Date + Time of Check-out
 - Date + Time of Check-in
 - [NOTE] A record is only added once the resource has been checked in
+
+### Alerts
+- Alert ID
+- Type of Alert
+  - Check-out Request
+  - Inventory Alert (missing/damaged item)
+- User or Student ID
+- Resource ID
+- [NOTE] Alerts may expire depending on the type:
+  - Check-out requests will expire after a set amount of time (must be handled server-side)
+  - Inventory alerts will not disappear unless cleared by an admin
 
 # Layout
 ### Basic
