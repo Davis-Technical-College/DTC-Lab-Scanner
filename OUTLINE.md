@@ -1,7 +1,5 @@
 # Required Dependencies
-- react-native-qrcode-scanner
-- react-native-camera
-- react-native-permissions
+- react-native-vision-camera
 - @react-navigation/drawer
 - @react-navigation/native
 - axios
