@@ -1,4 +1,7 @@
 # Timetable
+### 2023-06-07
+- Researched QR code scanning implementation
+
 ### 2023-06-06
 - Added more documentation, including a categorized to-do list and a timetable
 - Created realtime database in Firebase
