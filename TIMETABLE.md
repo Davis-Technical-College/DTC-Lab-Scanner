@@ -1,4 +1,9 @@
 # Timetable
+### 2023-06-08
+- Finished sample QR code scanner
+- Met with endorser to discuss project needs
+- Filled out project proposal
+
 ### 2023-06-07
 - Researched QR code scanning implementation
 
