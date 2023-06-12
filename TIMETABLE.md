@@ -1,4 +1,9 @@
 # Timetable
+### 2023-06-12
+- Finished and submitted project proposal
+- Submitted course timeline
+- Initialized Expo project folder
+
 ### 2023-06-08
 - Finished sample QR code scanner
 - Met with endorser to discuss project needs
