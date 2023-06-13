@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DTCLab",
-    "slug": "DTCLab",
+    "name": "DTC-Lab-Scanner",
+    "slug": "DTC-Lab-Scanner",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
