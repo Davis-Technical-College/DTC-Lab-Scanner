@@ -1,4 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -14,6 +15,8 @@ import AddResource from './screens/Data/Resources/AddResource';
 import AllUsers from './screens/Data/Users/AllUsers';
 import UserDetails from './screens/Data/Users/UserDetails';
 
+// Create navigators
+const AuthStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 export default function App() {
