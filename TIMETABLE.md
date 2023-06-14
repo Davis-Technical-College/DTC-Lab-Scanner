@@ -1,4 +1,8 @@
 # Timetable
+### 2023-06-14
+- Added sample authentication
+- Created authentication context with token and user level
+
 ### 2023-06-13
 - Created main screens
 - Set up sample layout
