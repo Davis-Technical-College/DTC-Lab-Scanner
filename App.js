@@ -6,7 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
 
 // Project imports
 import AuthContextProvider, { AuthContext } from './store/auth-context';
@@ -105,11 +105,12 @@ function Root() {
     fetchToken();
   }, []);
 
-  // Return AppLoading screen while waiting for login
+  // Return splash screen while waiting for login
   if (isTryingLogin) {
-    return <AppLoading />;
+    SplashScreen.preventAutoHideAsync();
   }
 
+  SplashScreen.hideAsync();
   return <Navigation />;
 }
 
