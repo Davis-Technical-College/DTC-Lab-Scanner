@@ -101,6 +101,8 @@ function Root() {
 
       setIsTryingLogin(false);
     }
+
+    fetchToken();
   }, []);
 
   // Return AppLoading screen while waiting for login
