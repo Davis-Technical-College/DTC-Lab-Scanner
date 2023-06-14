@@ -119,7 +119,7 @@ function Root() {
 export default function App() {
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
 
       <AuthContextProvider>
         <Root />
