@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Create the base for the context
 export const AuthContext = createContext({
   token: '',
-  level: 0,
+  level: '',
   isAuthenticated: false,
   authenticate: (token) => {},
   logout: () => {},
@@ -27,7 +27,7 @@ function AuthContextProvider({ children }) {
   // When logging out, void the token and level states
   function logout() {
     setAuthToken(null);
-    setUserLevel(0);
+    setUserLevel(null);
     AsyncStorage.removeItem('token');
     AsyncStorage.removeItem('level');
   }
