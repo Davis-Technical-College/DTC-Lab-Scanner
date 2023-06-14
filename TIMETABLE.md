@@ -1,4 +1,8 @@
 # Timetable
+### 2023-06-13
+- Created main screens
+- Set up sample layout
+
 ### 2023-06-12
 - Finished and submitted project proposal
 - Submitted course timeline
