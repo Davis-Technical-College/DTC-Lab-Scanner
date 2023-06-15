@@ -84,7 +84,53 @@ function UserDrawer() {
 }
 
 // Administrator drawer navigator
+function AdminDrawer() {
+  const authCtx = useContext(AuthContext);
 
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerRight: () => (
+          <Button
+            onPress={() => authCtx.logout()}
+            title="Logout"
+            color="#6f004c"
+          />
+        ),
+      }}
+    >
+      <Drawer.Screen
+        name="Overview"
+        component={Overview}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <AntDesign name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="AllResources"
+        component={AllResources}
+        options={{
+          drawerLabel: 'All Resources',
+          drawerIcon: ({ color, size }) => (
+            <AntDesign name="book" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="AllUsers"
+        component={AllUsers}
+        options={{
+          drawerLabel: 'All Users',
+          drawerIcon: ({ color, size }) => (
+            <AntDesign name="user" size={size} color={color} />
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
 
 // Container for navigation; state is dependent on user level and authentication
 function Navigation() {
@@ -93,7 +139,8 @@ function Navigation() {
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthNav />}
-      {authCtx.isAuthenticated && <UserDrawer />}
+      {(authCtx.isAuthenticated && authCtx.level == 'user') && <UserDrawer />}
+      {(authCtx.isAuthenticated && authCtx.level == 'admin') && <AdminDrawer />}
     </NavigationContainer>
   );
 }
