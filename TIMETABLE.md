@@ -1,4 +1,9 @@
 # Timetable
+### 2023-06-15
+- Finished sample authentication
+- Created separate drawers for user and admin roles
+- Added logout button
+
 ### 2023-06-14
 - Added sample authentication
 - Created authentication context with token and user level
