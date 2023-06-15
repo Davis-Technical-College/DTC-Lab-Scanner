@@ -7,9 +7,9 @@ function Login() {
   // Set up context
   const authCtx = useContext(AuthContext);
 
-  // Log in as user
-  function userLogin() {
-    authCtx.authenticate('xoxoxo', 'user');
+  // Log in with level passed as parameter
+  function testLogin(level) {
+    authCtx.authenticate('xoxoxo', level);
   }
 
   return (
@@ -17,11 +17,12 @@ function Login() {
       <Button 
         title='Sign in as user'
         color='#003db6'
-        onPress={userLogin}
+        onPress={() => testLogin('user')}
       />
       <Button
         title='Sign in as administrator'
         color='#770000'
+        onPress={() => testLogin('admin')}
       />
     </View>
   );
