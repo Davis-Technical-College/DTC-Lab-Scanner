@@ -7,6 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
+import { Button } from 'react-native';
 
 // Project imports
 import AuthContextProvider, { AuthContext } from './store/auth-context';
@@ -44,8 +45,20 @@ function AuthNav() {
 
 // Standard user drawer navigator
 function UserDrawer() {
+  const authCtx = useContext(AuthContext);
+
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={{
+        headerRight: () => (
+          <Button
+            onPress={() => authCtx.logout()}
+            title="Logout"
+            color="#6f004c"
+          />
+        ),
+      }}
+    >
       <Drawer.Screen
         name="Overview"
         component={Overview}
