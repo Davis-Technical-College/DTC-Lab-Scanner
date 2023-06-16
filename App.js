@@ -2,7 +2,12 @@
 import { useContext, useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
@@ -43,22 +48,25 @@ function AuthNav() {
   );
 }
 
-// Standard user drawer navigator
-function UserDrawer() {
+// Drawer navigator
+function MainDrawer() {
   const authCtx = useContext(AuthContext);
 
   return (
-    <Drawer.Navigator
-      screenOptions={{
-        headerRight: () => (
-          <Button
+    <Drawer.Navigator initialRouteName="Overview" drawerContent={props => {
+      return (
+        <DrawerContentScrollView {...props}>
+          <DrawerItemList {...props} />
+          <DrawerItem
+            label="Logout"
+            icon={({ color, size }) => (
+              <AntDesign name="logout" size={size} color={color}/>
+            )}
             onPress={() => authCtx.logout()}
-            title="Logout"
-            color="#6f004c"
           />
-        ),
-      }}
-    >
+        </DrawerContentScrollView>
+      )
+    }}>
       <Drawer.Screen
         name="Overview"
         component={Overview}
@@ -68,7 +76,8 @@ function UserDrawer() {
           ),
         }}
       />
-      <Drawer.Screen
+      {/* Standard user screens */}
+      {authCtx.level == 'user' && <Drawer.Screen
         name="ScanCode"
         component={ScanCode}
         options={{
@@ -78,37 +87,9 @@ function UserDrawer() {
             <AntDesign name="scan1" size={size} color={color} />
           ),
         }}
-      />
-    </Drawer.Navigator>
-  );
-}
-
-// Administrator drawer navigator
-function AdminDrawer() {
-  const authCtx = useContext(AuthContext);
-
-  return (
-    <Drawer.Navigator
-      screenOptions={{
-        headerRight: () => (
-          <Button
-            onPress={() => authCtx.logout()}
-            title="Logout"
-            color="#6f004c"
-          />
-        ),
-      }}
-    >
-      <Drawer.Screen
-        name="Overview"
-        component={Overview}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <AntDesign name="home" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
+      />}
+      {/* Administrator screens */}
+      {authCtx.level == 'admin' && <Drawer.Screen
         name="AllResources"
         component={AllResources}
         options={{
@@ -117,8 +98,8 @@ function AdminDrawer() {
             <AntDesign name="book" size={size} color={color} />
           ),
         }}
-      />
-      <Drawer.Screen
+      />}
+      {authCtx.level == 'admin' && <Drawer.Screen
         name="AllUsers"
         component={AllUsers}
         options={{
@@ -127,7 +108,7 @@ function AdminDrawer() {
             <AntDesign name="user" size={size} color={color} />
           ),
         }}
-      />
+      />}
     </Drawer.Navigator>
   );
 }
@@ -139,8 +120,7 @@ function Navigation() {
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthNav />}
-      {(authCtx.isAuthenticated && authCtx.level == 'user') && <UserDrawer />}
-      {(authCtx.isAuthenticated && authCtx.level == 'admin') && <AdminDrawer />}
+      {authCtx.isAuthenticated && <MainDrawer />}
     </NavigationContainer>
   );
 }
