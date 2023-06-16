@@ -1,5 +1,6 @@
 // React and Expo package imports
 import { useContext, useState, useEffect } from 'react';
+import { SafeAreaView, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
@@ -55,16 +56,20 @@ function MainDrawer() {
   return (
     <Drawer.Navigator initialRouteName="Overview" drawerContent={props => {
       return (
-        <DrawerContentScrollView {...props}>
-          <DrawerItemList {...props} />
-          <DrawerItem
-            label="Logout"
-            icon={({ color, size }) => (
-              <AntDesign name="logout" size={size} color={color}/>
-            )}
-            onPress={() => authCtx.logout()}
-          />
-        </DrawerContentScrollView>
+        <SafeAreaView style= {{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
+          <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+          </DrawerContentScrollView>
+          <View>
+            <DrawerItem
+              label="Logout"
+              icon={({ color, size }) => (
+                <AntDesign name="logout" size={size} color={color}/>
+              )}
+              onPress={() => authCtx.logout()}
+            />
+          </View>
+        </SafeAreaView>
       )
     }}>
       <Drawer.Screen
