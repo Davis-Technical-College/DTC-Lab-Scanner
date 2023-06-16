@@ -56,12 +56,24 @@ function MainDrawer() {
   return (
     <Drawer.Navigator initialRouteName="Overview" drawerContent={props => {
       return (
-        <SafeAreaView style= {{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
+        <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
           <DrawerContentScrollView {...props}>
+            <DrawerItem
+              // User's name will go here
+              label="John Doe"
+              labelStyle={{
+                fontSize: 20,
+                fontWeight: 'bold',
+              }}
+              // Don't change style on press
+              pressOpacity={0}
+              pressColor={'#ffffff'}
+            />
             <DrawerItemList {...props} />
           </DrawerContentScrollView>
           <View>
             <DrawerItem
+              // Logout button
               label="Logout"
               icon={({ color, size }) => (
                 <AntDesign name="logout" size={size} color={color}/>
