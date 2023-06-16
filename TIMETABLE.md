@@ -1,4 +1,8 @@
 # Timetable
+### 2023-06-16
+- Moved logout button into sidebar
+- Consolidated drawers into single component
+
 ### 2023-06-15
 - Finished sample authentication
 - Created separate drawers for user and admin roles
