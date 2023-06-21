@@ -13,7 +13,6 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
-import { Button } from 'react-native';
 
 // Project imports
 import AuthContextProvider, { AuthContext } from './store/auth-context';
