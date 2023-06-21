@@ -1,4 +1,7 @@
 # Timetable
+### 2023-06-20
+- [ABSENT]
+
 ### 2023-06-16
 - Moved logout button into sidebar
 - Consolidated drawers into single component
