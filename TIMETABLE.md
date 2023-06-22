@@ -1,4 +1,7 @@
 # Timetable
+### 2023-06-21
+- Met with client to discuss progress
+
 ### 2023-06-20
 - [ABSENT]
 
