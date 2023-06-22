@@ -1,4 +1,9 @@
 # Timetable
+### 2023-06-22
+- Researched Microsoft Azure authentication
+- Attempted to add Azure authentication
+  - Not fully functional yet, pending further research
+
 ### 2023-06-21
 - Met with client to discuss progress
 
