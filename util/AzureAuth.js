@@ -5,10 +5,12 @@ import { AuthContext } from '../store/auth-context';
 
 const CREDENTIALS = {
   client_id: '3bbf6b84-2d32-4341-a6d7-d24b0280bed8',
-  client_secret: '0b7ed205-1dbb-4701-bd20-ea2b51887efe',
+  client_secret: 'dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc',
   redirect_uri: 'https://login.microsoftonline.com/common/oauth2/nativeclient',
   scope: 'User.Read',
 };
+
+// Secret: dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc
 
 const Instance = new AzureInstance(CREDENTIALS);
 
@@ -33,7 +35,7 @@ function AzureAuth () {
       loadingMessage="Requesting access token"
       onSuccess={onLoginSuccess}
       onCancel={onLoginCancel}
-      onFailure={console.log('failure')}
+      onFailure={() => console.log('Login failed')}
     />
   );
 }
