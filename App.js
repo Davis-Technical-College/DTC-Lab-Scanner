@@ -59,7 +59,7 @@ function MainDrawer() {
           <DrawerContentScrollView {...props}>
             <DrawerItem
               // User's name will go here
-              label="John Doe"
+              label={`${authCtx.username}`}
               labelStyle={{
                 fontSize: 20,
                 fontWeight: 'bold',
@@ -151,9 +151,10 @@ function Root() {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem('token');
       const storedLevel = await AsyncStorage.getItem('level');
+      const storedName = await AsyncStorage.getItem('username');
 
-      if (storedToken, storedLevel) {
-        authCtx.authenticate(storedToken, storedLevel);
+      if (storedToken, storedLevel, storedName) {
+        authCtx.authenticate(storedToken, storedLevel, storedName);
       }
 
       setIsTryingLogin(false);

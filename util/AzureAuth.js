@@ -19,7 +19,9 @@ function AzureAuth () {
 
   function onLoginSuccess() {
     Instance.getUserInfo().then(result => {
-      console.log(result);
+      const username = `${result.givenName} ${result.surname}`;
+      const token = Instance.getToken().accessToken;
+      authCtx.authenticate(token, 'user', username);
     }).catch(err => {
       console.log(err);
     });
