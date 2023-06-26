@@ -1,42 +1,45 @@
 import { useContext } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
 
 import { AuthContext } from '../../store/auth-context';
-import AzureAuth from '../../util/AzureAuth';
 
-function Login() {
-  // Set up context
+const CREDENTIALS = {
+  client_id: '3bbf6b84-2d32-4341-a6d7-d24b0280bed8',
+  client_secret: 'dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc',
+  redirect_uri: 'https://login.microsoftonline.com/common/oauth2/nativeclient',
+  scope: 'User.Read',
+};
+
+// Secret: dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc
+
+const Instance = new AzureInstance(CREDENTIALS);
+
+function Login () {
   const authCtx = useContext(AuthContext);
 
-  // Log in with level passed as parameter
-  function testLogin(level) {
-    authCtx.authenticate('xoxoxo', level);
+  function onLoginSuccess() {
+    Instance.getUserInfo().then(result => {
+      const username = `${result.givenName} ${result.surname}`;
+      const token = Instance.getToken().accessToken;
+      authCtx.authenticate(token, 'user', username);
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
-  // return (
-  //   <View style={styles.container}>
-  //     <Button 
-  //       title='Sign in as user'
-  //       color='#003db6'
-  //       onPress={() => testLogin('user')}
-  //     />
-  //     <Button
-  //       title='Sign in as administrator'
-  //       color='#770000'
-  //       onPress={() => testLogin('admin')}
-  //     />
-  //   </View>
-  // );
+  function onLoginCancel() {
+    console.log('Cancelled');
+  }
 
-  return ( <AzureAuth /> );
+  return (
+    <AzureLoginView
+      azureInstance={Instance}
+      loadingMessage="Requesting access token"
+      onSuccess={onLoginSuccess}
+      onCancel={onLoginCancel}
+      onFailure={() => console.log('Login failed')}
+    />
+  );
 }
 
 export default Login;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
