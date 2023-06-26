@@ -1,4 +1,7 @@
 # Timetable
+### 2023-06-26
+- Fixed Azure authentication
+
 ### 2023-06-22
 - Researched Microsoft Azure authentication
 - Attempted to add Azure authentication
