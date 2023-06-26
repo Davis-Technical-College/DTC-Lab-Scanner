@@ -1,6 +1,6 @@
 // React and Expo package imports
 import { useContext, useState, useEffect } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
@@ -59,7 +59,9 @@ function MainDrawer() {
           <DrawerContentScrollView {...props}>
             <DrawerItem
               // User's name will go here
-              label={`${authCtx.username}`}
+              label={
+                () => <Text style={styles.userText}>{authCtx.username}</Text>
+              }
               labelStyle={{
                 fontSize: 20,
                 fontWeight: 'bold',
@@ -184,3 +186,11 @@ export default function App() {
     </>
   );
 }
+
+// StyleSheet
+const styles = StyleSheet.create({
+  userText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
