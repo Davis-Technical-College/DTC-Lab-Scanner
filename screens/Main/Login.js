@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
 
 import { AuthContext } from '../../store/auth-context';
@@ -16,6 +17,7 @@ const Instance = new AzureInstance(CREDENTIALS);
 
 function Login () {
   const authCtx = useContext(AuthContext);
+  const [loggingIn, setLoggingIn] = useState(false);
 
   function onLoginSuccess() {
     Instance.getUserInfo().then(result => {
@@ -32,14 +34,47 @@ function Login () {
   }
 
   return (
-    <AzureLoginView
+    loggingIn ? <AzureLoginView
       azureInstance={Instance}
       loadingMessage="Requesting access token"
       onSuccess={onLoginSuccess}
       onCancel={onLoginCancel}
       onFailure={() => console.log('Login failed')}
-    />
+    /> : <View style={styles.container}>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>
+          This apps requires a Microsoft account with Davis Technical College.
+          If you do not have one or forgot your login, please contact an administrator.
+        </Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title='Login'
+          onPress={() => setLoggingIn(true)}
+        />
+      </View>
+    </View>
   );
 }
 
 export default Login;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textContainer: {
+    width: '80%',
+    marginBottom: 18,
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    width: '20%',
+  },
+});
