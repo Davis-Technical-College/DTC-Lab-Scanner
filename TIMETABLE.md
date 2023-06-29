@@ -1,4 +1,10 @@
 # Timetable
+### 2023-06-28
+- [NOTHING]
+
+### 2023-06-27
+- [NOTHING]
+
 ### 2023-06-26
 - Fixed Azure authentication
 
