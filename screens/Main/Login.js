@@ -44,7 +44,7 @@ function Login () {
       <View style={styles.textContainer}>
         <Text style={styles.text}>
           This apps requires a Microsoft account with Davis Technical College.
-          If you do not have one or forgot your login, please contact an administrator.
+          If you do not have one or forgot your login information, please contact an administrator.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
