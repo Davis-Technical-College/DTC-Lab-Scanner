@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import CookieManager from '@react-native-cookies/cookies';
 
 // Create the base for the context
 export const AuthContext = createContext({
@@ -30,6 +31,7 @@ function AuthContextProvider({ children }) {
 
   // When logging out, void the token and level states
   function logout() {
+    CookieManager.clearAll();
     setAuthToken(null);
     setUserLevel(null);
     setUserName(null);
