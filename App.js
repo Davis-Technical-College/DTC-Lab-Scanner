@@ -13,6 +13,7 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Project imports
 import AuthContextProvider, { AuthContext } from './store/auth-context';
@@ -177,13 +178,13 @@ function Root() {
 // Main App export
 export default function App() {
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="dark" />
 
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>
-    </>
+    </GestureHandlerRootView>
   );
 }
 
