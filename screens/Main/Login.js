@@ -7,7 +7,6 @@ import { AuthContext } from '../../store/auth-context';
 const CREDENTIALS = {
   client_id: '3bbf6b84-2d32-4341-a6d7-d24b0280bed8',
   client_secret: 'dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc',
-  // redirect_uri: 'https://login.microsoftonline.com/common/oauth2/nativeclient',
   redirect_uri: 'https://localhost:3000',
   scope: 'User.Read',
 };
@@ -28,7 +27,6 @@ function Login () {
     Instance.getUserInfo().then(result => {
       // Get name, token, and email address from result
       username = `${result.givenName} ${result.surname}`;
-      token = Instance.getToken().accessToken;
       const email = result.mail;
 
       // Check whether user is admin or student with RegEx
@@ -36,6 +34,7 @@ function Login () {
       userLevel = condition.test(email) ? 'admin' : 'user';
     }).then(() => {
       // Authenticate with context
+      token = Instance.getToken().accessToken;
       authCtx.authenticate(token, userLevel, username);
     }).catch(err => {
       console.log(err);
@@ -46,14 +45,20 @@ function Login () {
     console.log('Cancelled');
   }
 
+  if (loggingIn) {
+    return (
+      <AzureLoginView
+        azureInstance={Instance}
+        loadingMessage="Requesting access token"
+        onSuccess={onLoginSuccess}
+        onCancel={onLoginCancel}
+        onFailure={() => console.log('Login failed')}
+      />
+    );
+  }
+
   return (
-    loggingIn ? <AzureLoginView
-      azureInstance={Instance}
-      loadingMessage="Requesting access token"
-      onSuccess={onLoginSuccess}
-      onCancel={onLoginCancel}
-      onFailure={() => console.log('Login failed')}
-    /> : <View style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
           This apps requires a Microsoft account with Davis Technical College.
