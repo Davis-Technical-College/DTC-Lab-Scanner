@@ -22,9 +22,17 @@ function Login () {
 
   function onLoginSuccess() {
     Instance.getUserInfo().then(result => {
+      // Get name, token, and email address from result
       const username = `${result.givenName} ${result.surname}`;
       const token = Instance.getToken().accessToken;
-      authCtx.authenticate(token, 'user', username);
+      const email = result.mail;
+
+      // Check whether user is admin or student with RegEx
+      const condition = new RegExp('([0-9])\\w+@davistech\.edu');
+      const userLevel = condition.test(email) ? 'user' : 'admin';
+
+      // Authenticate with context
+      authCtx.authenticate(token, userLevel, username);
     }).catch(err => {
       console.log(err);
     });
