@@ -1,4 +1,15 @@
 # Timetable
+### 2023-07-03
+- Reverted to former Azure authentication package
+- Fixed Azure authentication (again)
+- Implemented logout functionality with react-native-cookies
+
+### 2023-06-30
+- Switched from Expo-managed to bare workflow
+
+### 2023-06-29
+- Attempted to fix Azure authentication
+
 ### 2023-06-28
 - [NOTHING]
 
