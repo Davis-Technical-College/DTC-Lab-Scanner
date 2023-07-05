@@ -32,8 +32,8 @@ function Login () {
       const email = result.mail;
 
       // Check whether user is admin or student with RegEx
-      const condition = new RegExp('([0-9])\\w+@davistech\.edu');
-      userLevel = condition.test(email) ? 'user' : 'admin';
+      const condition = new RegExp('([a-zA-Z\.]+)@davistech.edu');
+      userLevel = condition.test(email) ? 'admin' : 'user';
     }).then(() => {
       // Authenticate with context
       authCtx.authenticate(token, userLevel, username);
