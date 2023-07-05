@@ -1,4 +1,7 @@
 # Timetable
+### 2023-07-05
+- Added RegEx validation to distinguish user role
+
 ### 2023-07-03
 - Reverted to former Azure authentication package
 - Fixed Azure authentication (again)
