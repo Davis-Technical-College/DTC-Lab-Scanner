@@ -1,6 +1,7 @@
 // React and Expo package imports
 import { useContext, useState, useEffect } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
@@ -59,7 +60,9 @@ function MainDrawer() {
           <DrawerContentScrollView {...props}>
             <DrawerItem
               // User's name will go here
-              label="John Doe"
+              label={
+                () => <Text style={styles.userText}>{authCtx.username}</Text>
+              }
               labelStyle={{
                 fontSize: 20,
                 fontWeight: 'bold',
@@ -151,9 +154,10 @@ function Root() {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem('token');
       const storedLevel = await AsyncStorage.getItem('level');
+      const storedName = await AsyncStorage.getItem('username');
 
-      if (storedToken, storedLevel) {
-        authCtx.authenticate(storedToken, storedLevel);
+      if (storedToken, storedLevel, storedName) {
+        authCtx.authenticate(storedToken, storedLevel, storedName);
       }
 
       setIsTryingLogin(false);
@@ -174,12 +178,20 @@ function Root() {
 // Main App export
 export default function App() {
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style="dark" />
 
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>
-    </>
+    </GestureHandlerRootView>
   );
 }
+
+// StyleSheet
+const styles = StyleSheet.create({
+  userText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
