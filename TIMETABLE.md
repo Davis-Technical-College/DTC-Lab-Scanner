@@ -1,4 +1,14 @@
 # Timetable
+### 2023-07-10
+- Moved authentication data to separate .env file
+  - This is included in the .gitignore file, so it isn't visible on the repository
+- Merged Azure authentication branch with main
+- Created basic UI components
+- Created blank components for resource management
+- Started database development
+  - Installed package and created Axios function file
+  - Added cloud storage to Firebase (for images)
+
 ### 2023-07-05
 - Added RegEx validation to distinguish user role
 
