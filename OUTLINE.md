@@ -20,8 +20,9 @@
 # Data
 ### Resources (e.g. Labkits)
 - Resource ID
-- QR Code
 - Title
+- Image URI
+- QR Code
 - Inventory/Components
 - Current User
 
