@@ -1,12 +1,16 @@
 import { useContext, useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
+import Config from 'react-native-config';
 
 import { AuthContext } from '../../store/auth-context';
 
+const id = Config.CLIENT_ID;
+const secret = Config.CLIENT_SECRET;
+
 const CREDENTIALS = {
-  client_id: '3bbf6b84-2d32-4341-a6d7-d24b0280bed8',
-  client_secret: 'dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc',
+  client_id: id,
+  client_secret: secret,
   redirect_uri: 'https://localhost:3000',
   scope: 'User.Read',
 };
