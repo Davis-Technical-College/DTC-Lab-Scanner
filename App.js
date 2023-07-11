@@ -2,7 +2,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   createDrawerNavigator,
@@ -17,6 +17,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 // Project imports
 import AuthContextProvider, { AuthContext } from './store/auth-context';
+import IconButton from './components/UI/IconButton';
 
 // Main screens imports
 import Overview from './screens/Main/Overview';
@@ -32,6 +33,7 @@ import UserDetails from './screens/Data/Users/UserDetails';
 
 // Create navigators
 const AuthStack = createNativeStackNavigator();
+const ResStack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 // User authentication navigator
@@ -46,6 +48,52 @@ function AuthNav() {
         }}
       />
     </AuthStack.Navigator>
+  );
+}
+
+// Stack navigator for resources
+function ResourceStack() {
+  return (
+    <ResStack.Navigator>
+      <ResStack.Screen
+        name="AllResources"
+        component={AllResources}
+        options={({ navigation }) => ({
+          title: 'Resources',
+          headerLeft: ({ tintColor }) => (
+            <>
+              <IconButton
+                styleOverride={{ marginLeft: -16, marginRight: 16 }}
+                icon="menuunfold" size={22} color={tintColor}
+                onPress={() => navigation.toggleDrawer()}
+              />
+            </>
+          ),
+          headerRight: ({ tintColor }) => (
+            <>
+              <IconButton
+                icon="plus" size={22} color={tintColor}
+                onPress={() => navigation.navigate('AddResource')}
+              />
+            </>
+          ),
+        })}
+      />
+      <ResStack.Screen
+        name="ResourceDetails"
+        component={ResourceDetails}
+        options={{
+          title: 'Details',
+        }}
+      />
+      <ResStack.Screen
+        name="AddResource"
+        component={AddResource}
+        options={{
+          title: 'Add New Resource',
+        }}
+      />
+    </ResStack.Navigator>
   );
 }
 
@@ -85,7 +133,18 @@ function MainDrawer() {
           </View>
         </SafeAreaView>
       )
-    }}>
+    }}
+    screenOptions={({ navigation }) => ({
+      headerLeft: ({ tintColor }) => (
+        <>
+          <IconButton
+            icon="menuunfold" size={22} color={tintColor}
+            onPress={() => navigation.toggleDrawer()}
+          />
+        </>
+      ),
+    })}
+    >
       <Drawer.Screen
         name="Overview"
         component={Overview}
@@ -109,10 +168,11 @@ function MainDrawer() {
       />}
       {/* Administrator screens */}
       {authCtx.level == 'admin' && <Drawer.Screen
-        name="AllResources"
-        component={AllResources}
+        name="ResourceStack"
+        component={ResourceStack}
         options={{
-          drawerLabel: 'All Resources',
+          drawerLabel: 'Manage Resources',
+          headerShown: false,
           drawerIcon: ({ color, size }) => (
             <AntDesign name="book" size={size} color={color} />
           ),
@@ -122,7 +182,8 @@ function MainDrawer() {
         name="AllUsers"
         component={AllUsers}
         options={{
-          drawerLabel: 'All Users',
+          title: 'Users',
+          drawerLabel: 'View Users',
           drawerIcon: ({ color, size }) => (
             <AntDesign name="user" size={size} color={color} />
           ),
@@ -193,5 +254,6 @@ const styles = StyleSheet.create({
   userText: {
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
