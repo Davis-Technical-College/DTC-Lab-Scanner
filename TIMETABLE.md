@@ -1,4 +1,8 @@
 # Timetable
+### 2023-07-11
+- Added nested stack navigator for resource management
+- Added screens to said navigator
+
 ### 2023-07-10
 - Moved authentication data to separate .env file
   - This is included in the .gitignore file, so it isn't visible on the repository
