@@ -1,10 +1,10 @@
 import { Pressable, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-function IconButton({ icon, size, color, onPress }) {
+function IconButton({ styleOverride, icon, size, color, onPress }) {
   return (
     <Pressable
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      style={({ pressed }) => [styles.button, styleOverride, pressed && styles.pressed]}
       onPress={onPress}
     >
       <AntDesign name={icon} size={size} color={color} />
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 8,
+    padding: 12,
   },
   pressed: {
     opacity: 0.7,
