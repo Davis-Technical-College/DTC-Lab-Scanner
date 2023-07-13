@@ -15,15 +15,13 @@ const CREDENTIALS = {
   scope: 'User.Read',
 };
 
-// Secret: dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc
-
 const Instance = new AzureInstance(CREDENTIALS);
 
 function Login () {
   const authCtx = useContext(AuthContext);
   const [loggingIn, setLoggingIn] = useState(false);
 
-  function onLoginSuccess() {
+  const onLoginSuccess = () => {
     let username = '';
     let token = '';
     let userLevel = '';
@@ -45,17 +43,13 @@ function Login () {
     });
   }
 
-  function onLoginCancel() {
-    console.log('Cancelled');
-  }
-
   if (loggingIn) {
     return (
       <AzureLoginView
         azureInstance={Instance}
         loadingMessage="Requesting access token"
         onSuccess={onLoginSuccess}
-        onCancel={onLoginCancel}
+        onCancel={() => console.log('Cancelled')}
         onFailure={() => console.log('Login failed')}
       />
     );
