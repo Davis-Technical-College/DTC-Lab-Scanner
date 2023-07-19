@@ -21,12 +21,12 @@ function Login () {
   const authCtx = useContext(AuthContext);
   const [loggingIn, setLoggingIn] = useState(false);
 
-  const onLoginSuccess = () => {
+  const onLoginSuccess = async () => {
     let username = '';
     let token = '';
     let userLevel = '';
 
-    Instance.getUserInfo().then(result => {
+    await Instance.getUserInfo().then(result => {
       // Get name, token, and email address from result
       username = `${result.givenName} ${result.surname}`;
       const email = result.mail;
