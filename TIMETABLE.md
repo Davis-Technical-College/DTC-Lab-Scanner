@@ -1,4 +1,7 @@
 # Timetable
+### 2023-07-19
+- Fixed app-crashing bug that occurs during Azure authentication
+
 ### 2023-07-11
 - Added nested stack navigator for resource management
 - Added screens to said navigator
