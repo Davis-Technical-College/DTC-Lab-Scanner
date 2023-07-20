@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 8,
-    color: 'gray',
+    color: 'black',
     textAlign: 'center',
   },
   title: {

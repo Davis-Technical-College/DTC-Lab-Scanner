@@ -104,6 +104,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingTop: 8,
     borderTopWidth: 2,
-    borderTopColor: 'gray',
+    borderTopColor: 'black',
   },
 });
