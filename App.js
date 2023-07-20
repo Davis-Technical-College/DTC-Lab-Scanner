@@ -26,7 +26,7 @@ import ScanCode from './screens/Main/ScanCode';
 // Resource data screen imports
 import AllResources from './screens/Data/Resources/AllResources';
 import ResourceDetails from './screens/Data/Resources/ResourceDetails';
-import AddResource from './screens/Data/Resources/AddResource';
+import ManageResource from './screens/Data/Resources/ManageResource';
 // User data screen imports
 import AllUsers from './screens/Data/Users/AllUsers';
 import UserDetails from './screens/Data/Users/UserDetails';
@@ -87,10 +87,10 @@ function ResourceStack() {
         }}
       />
       <ResStack.Screen
-        name="AddResource"
-        component={AddResource}
+        name="ManageResource"
+        component={ManageResource}
         options={{
-          title: 'Add New Resource',
+          title: 'Add/Update Resource',
         }}
       />
     </ResStack.Navigator>
