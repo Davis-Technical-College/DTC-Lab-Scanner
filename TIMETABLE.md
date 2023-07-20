@@ -1,4 +1,7 @@
 # Timetable
+### 2023-07-20
+- Began to flesh out components for resource management
+
 ### 2023-07-19
 - Fixed app-crashing bug that occurs during Azure authentication
 
