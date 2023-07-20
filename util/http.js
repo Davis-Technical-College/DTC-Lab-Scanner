@@ -12,9 +12,11 @@ export async function fetchResources() {
     const resourceObj = {
       id: key,
       name: response.data[key].name,
+      description: response.data[key].description,
       imageUri: response.data[key].imageUri,
       components: response.data[key].components,
       currentUser: response.data[key].currentUser,
+      alert: response.data[key].alert,
     };
     resources.push(resourceObj);
   }
