@@ -5,7 +5,35 @@ import Input from '../UI/Input';
 import Button from '../UI/Button';
 
 function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) {
+  // Create state for inputs
+  const [inputs, setInputs] = useState({
+    name: {
+      value: defaultValues ? defaultValues.name : '',
+      isValid: true,
+    },
+    description: {
+      value: defaultValues ? defaultValues.description : '',
+      isValid: true,
+    },
+    imageUri: {
+      value: defaultValues ? defaultValues.imageUri : '',
+      isValid: true,
+    },
+    components: {
+      value: defaultValues ? defaultValues.components : [],
+      isValid: true,
+    },
+  });
 
+  // Set the state when an input is changed
+  function inputChangedHandler(inputIdentifier, enteredValue) {
+    setInputs((curInputValues) => {
+      return {
+        ...curInputValues,
+        [inputIdentifier]: { value: enteredValue, isValid: true },
+      };
+    });
+  }
 }
 
 export default ResourceForm;
