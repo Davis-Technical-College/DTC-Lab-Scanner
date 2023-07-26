@@ -26,11 +26,11 @@ function ListItem({ position, max, text, onEdit, onMove, onDelete }) {
 
       {position > 1 && <IconButton
         icon="up" size={24} color="black"
-        onPress={() => moveComponentHandler(1)}
+        onPress={() => moveComponentHandler(-1)}
       />}
       {position < max && <IconButton
         icon="down" size={24} color="black"
-        onPress={() => moveComponentHandler(-1)}
+        onPress={() => moveComponentHandler(1)}
       />}
       <IconButton 
         icon="delete" size={24} color="black"
