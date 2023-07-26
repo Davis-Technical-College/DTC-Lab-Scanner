@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, ScrollView, Text, FlatList, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, FlatList, StyleSheet } from 'react-native';
 
 import Input from '../UI/Input';
 import ListItem from './ListItem';
@@ -20,11 +20,8 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       value: defaultValues ? defaultValues.imageUri : '',
       isValid: true,
     },
-    components: {
-      value: defaultValues ? defaultValues.components : [],
-      isValid: true,
-    },
   });
+  const [components, setComponents] = useState([]);
 
   // Set the state when an input is changed
   function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -37,22 +34,21 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   }
 
   const formIsInvalid = !inputs.name.isValid || !inputs.description.isValid || 
-    !inputs.imageUri.isValid || !inputs.components.isValid;
+    !inputs.imageUri.isValid;
 
   // Functions for handling the component list
   const addComponent = () => {
-    const newId = inputs.components.value.length;
-    const newComponent = { id: newId, text: '' };
-    const newData = { ...inputs.components.value, newComponent }
+    const newId = components.length + 1;
+    const newComp = { id: newId, text: '' };
 
-    inputChangedHandler('components', newData);
+    setComponents(currComps => [...currComps, newComp]);
   }
   const editComponent = (enteredText, position) => {
-    const filteredData = inputs.components.value.filter(item => item.id !== position);
+    const filteredData = components.filter(item => item.id !== position);
     const editedComponent = { id: position, text: enteredText };
-    const newData = { ...filteredData, editedComponent };
+    const newData = [ ...filteredData, editedComponent ].sort((a, b) => a.id - b.id);
 
-    inputChangedHandler('components', newData);
+    setComponents(newData);
   }
   const moveComponent = (direction) => {
 
@@ -63,15 +59,14 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   const renderComponent = ({ item }) => {
     return (
       <ListItem
-        position={item.id} max={inputs.components.value.length} text={item.text}
+        position={item.id} max={components.length} text={item.text}
         onEdit={editComponent} onMove={moveComponent} onDelete={deleteComponent}
       />
     );
   }
 
   return (
-    <ScrollView style={styles.form}>
-      <Text style={styles.title}>Resource</Text>
+    <View style={styles.form}>
       <Input
         label="Name"
         multiline={false}
@@ -87,12 +82,10 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         isInvalid={!inputs.description.isValid}
       />
       <FlatList
-        data={inputs.components.value}
-        keyExtractor={(item, index) => index.toString()}
+        style={styles.componentList}
+        data={components}
+        keyExtractor={(item) => item.id}
         renderItem={renderComponent}
-        ItemSeparatorComponent={
-          <View style={styles.separator} />
-        }
       />
       <Button
         color="#9000ff"
@@ -100,32 +93,17 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       >
         Add Component
       </Button>
-    </ScrollView>
+    </View>
   );
 }
 
 export default ResourceForm;
 
 const styles = StyleSheet.create({
-  form: {
-    marginTop: 40,
-  },
-  title: {
-    marginVertical: 24,
-    textAlign: 'center',
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 24,
-  },
   errorText: {
     margin: 8,
     textAlign: 'center',
     color: 'darkred',
-  },
-  separator: {
-    width: '90%',
-    height: 2,
-    backgroundColor: '#5b5b5b',
   },
   buttons: {
     flexDirection: 'row',
@@ -135,5 +113,8 @@ const styles = StyleSheet.create({
   button: {
     minWidth: 120,
     marginHorizontal: 8,
+  },
+  componentList: {
+    marginBottom: 12,
   },
 });
