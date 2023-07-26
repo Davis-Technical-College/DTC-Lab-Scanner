@@ -22,11 +22,18 @@ function ComponentList({ visible, componentList, onCancel, onUpdate }) {
 
     setComponents(newData);
   }
-  const moveComponent = (direction) => {
+  const moveComponent = (direction, position) => {
 
   }
-  const deleteComponent = () => {
+  const deleteComponent = (position) => {
+    const filteredData = components.filter(item => item.id !== position);
+    const newData = [];
 
+    for (let i = 0; i < filteredData.length; i++) {
+      newData.push({ id: i + 1, text: filteredData[i].text });
+    }
+
+    setComponents(newData);
   }
   const renderComponent = ({ item }) => {
     return (
