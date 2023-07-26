@@ -44,6 +44,7 @@ function ComponentList({ visible, componentList, onCancel, onUpdate }) {
           data={components}
           keyExtractor={(item) => item.id}
           renderItem={renderComponent}
+          removeClippedSubviews={false}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -61,12 +62,15 @@ export default ComponentList;
 
 const styles = StyleSheet.create({
   listContainer: {
-    flex: 4,
+    flex: 5,
+    marginTop: 12,
+    marginBottom: 12,
   },
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 12,
   },
   twoButtonContainer: {
     flexDirection: 'row',
