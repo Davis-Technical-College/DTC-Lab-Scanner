@@ -21,6 +21,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       isValid: true,
     },
   });
+
   // States for the component list modal and the list itself
   const [compsVisible, setCompsVisible] = useState(false);
   const [components, setComponents] = useState([]);
@@ -35,9 +36,9 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     });
   }
 
-  //
-  function updateComponentHandler(components) {
-    setComponents(components);
+  // Update the component state when the update button is pressed within the modal
+  function updateComponentHandler(newComponents) {
+    setComponents(newComponents);
     setCompsVisible(false);
   }
 
