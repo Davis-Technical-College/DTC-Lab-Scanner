@@ -6,6 +6,12 @@ function ListItem({ position, max, text, onEdit, onMove, onDelete }) {
   const updateComponentHandler = (enteredText) => {
     onEdit(enteredText, position);
   }
+  const moveComponentHandler = (direction) => {
+    onMove(direction, position);
+  }
+  const deleteComponentHandler = () => {
+    onDelete(position);
+  }
 
   return (
     <View style={styles.item}>
