@@ -74,21 +74,23 @@ function ManageResource({ route, navigation }) {
   }
 
   // Return component view
-  <View style={styles.container}>
-    <ResourceForm
-      defaultValues={selectedResource}
-      submitButtonLabel={isEditing ? 'Update' : 'Add'}
-      onCancel={cancelHandler} onSubmit={confirmHandler}
-    />
-    {isEditing && (
-      <View style={styles.deleteContainer}>
-        <IconButton
-          icon="trash" size={36} color="gray"
-          onPress={deleteResourceHandler}
-        />
-      </View>
-    )}
-  </View>
+  return (
+    <View style={styles.container}>
+      <ResourceForm
+        defaultValues={selectedResource}
+        submitButtonLabel={isEditing ? 'Update' : 'Add'}
+        onCancel={cancelHandler} onSubmit={confirmHandler}
+      />
+      {isEditing && (
+        <View style={styles.deleteContainer}>
+          <IconButton
+            icon="trash" size={36} color="gray"
+            onPress={deleteResourceHandler}
+          />
+        </View>
+      )}
+    </View>
+  );
 }
 
 export default ManageResource;
