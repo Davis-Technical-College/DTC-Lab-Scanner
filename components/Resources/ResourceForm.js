@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView, View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import Input from '../UI/Input';
 import ComponentList from './ComponentList';
