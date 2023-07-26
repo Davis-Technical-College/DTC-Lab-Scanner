@@ -1,6 +1,6 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-function Input({ label, keyboardType, secure, onUpdateValue, value, isInvalid }) {
+function Input({ label, multiline, onUpdateValue, value, isInvalid }) {
   return (
     <View style={styles.inputContainer}>
       <Text style={[ styles.label, isInvalid && styles.labelInvalid ]}>
@@ -9,8 +9,7 @@ function Input({ label, keyboardType, secure, onUpdateValue, value, isInvalid })
       <TextInput
         style={[ styles.input, isInvalid && styles.labelInvalid ]}
         autoCapitalize="none"
-        keyboardType={keyboardType}
-        secureTextEntry={secure}
+        multiline={multiline}
         onChangeText={onUpdateValue}
         value={value}
       />
