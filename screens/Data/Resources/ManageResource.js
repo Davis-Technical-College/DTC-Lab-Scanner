@@ -77,7 +77,7 @@ function ManageResource({ route, navigation }) {
   <View style={styles.container}>
     <ResourceForm
       defaultValues={selectedResource}
-      submitButtonLabel = {isEditing ? 'Update' : 'Add'}
+      submitButtonLabel={isEditing ? 'Update' : 'Add'}
       onCancel={cancelHandler} onSubmit={confirmHandler}
     />
     {isEditing && (
