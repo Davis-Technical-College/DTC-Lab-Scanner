@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, View, FlatList, StyleSheet } from 'react-native';
 
 import ListItem from './ListItem';
@@ -7,6 +7,10 @@ import Button from '../UI/Button';
 function ComponentList({ visible, componentList, onCancel, onUpdate }) {
   // State for the components list
   const [components, setComponents] = useState(componentList);
+
+  useEffect(() => {
+    setComponents(componentList);
+  }, [visible, componentList]);
 
   // Functions for handling the component list
   const addComponent = () => {
@@ -18,12 +22,32 @@ function ComponentList({ visible, componentList, onCancel, onUpdate }) {
   const editComponent = (enteredText, position) => {
     const filteredData = components.filter(item => item.id !== position);
     const editedComponent = { id: position, text: enteredText };
-    const newData = [ ...filteredData, editedComponent ].sort((a, b) => a.id - b.id);
+    const newData = [ ...filteredData, editedComponent ]
+      .sort((a, b) => a.id - b.id);
 
     setComponents(newData);
   }
   const moveComponent = (direction, position) => {
+    // Create index variable (array-friendly)
+    const index = position - 1;
+    // Retrieve text from items that will be swapped
+    const selectedText = components[index].text;
+    const swappedText = components[index + direction].text;
+    // Filter out the items that will be swapped
+    const filteredData = components.filter(
+      item => (item.id !== position && item.id !== position + direction)
+    );
 
+    // Create new (swapped) items to be put back into the components list
+    const newSelectedComp = { id: position + direction, text: selectedText };
+    const newSwappedComp = { id: position, text: swappedText };
+    // Add new items to filtered component list
+    const newDataTemp = [ ...filteredData, newSelectedComp ];
+    const newData = [ ...newDataTemp, newSwappedComp ]
+      .sort((a, b) => a.id - b.id);
+
+    // Update state with new data
+    setComponents(newData);
   }
   const deleteComponent = (position) => {
     const filteredData = components.filter(item => item.id !== position);
