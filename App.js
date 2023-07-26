@@ -73,7 +73,7 @@ function ResourceStack() {
             <>
               <IconButton
                 icon="plus" size={22} color={tintColor}
-                onPress={() => navigation.navigate('AddResource')}
+                onPress={() => navigation.navigate('ManageResource')}
               />
             </>
           ),
