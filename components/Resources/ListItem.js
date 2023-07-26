@@ -24,16 +24,22 @@ function ListItem({ position, max, text, onEdit, onMove, onDelete }) {
         onChangeText={updateComponentHandler}
       />
 
-      {position > 1 && <IconButton
-        icon="up" size={24} color="black"
+      {position > 1 ? <IconButton
+        icon="up" size={24} color="#000000"
         onPress={() => moveComponentHandler(-1)}
+      /> : <IconButton
+        icon="up" size={24} color="#dadada"
       />}
-      {position < max && <IconButton
-        icon="down" size={24} color="black"
+
+      {position < max ? <IconButton
+        icon="down" size={24} color="#000000"
         onPress={() => moveComponentHandler(1)}
+      /> : <IconButton
+        icon="down" size={24} color="#dadada"
       />}
+
       <IconButton 
-        icon="delete" size={24} color="black"
+        icon="delete" size={24} color="#000000"
         onPress={deleteComponentHandler}
       />
     </View>
