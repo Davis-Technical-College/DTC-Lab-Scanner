@@ -1,4 +1,16 @@
 # Timetable
+### 2023-07-26
+- Added component list to form as separate modal
+  - Includes buttons to add a new component, cancel the modification, or update the list
+- Added functionality to each component list item
+  - Input field to update the component name
+  - Buttons to move each item up or down on the list
+  - Button to delete the item
+
+### 2023-07-25
+- Created resource creation/edit form
+- Added name and description field to form
+
 ### 2023-07-20
 - Began to flesh out components for resource management
 
