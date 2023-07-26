@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ScrollView, View, Text, FlatList, StyleSheet } from 'react-native';
 
 import Input from '../UI/Input';
-import ListItem from './ListItem';
+import ComponentList from './ComponentList';
 import Button from '../UI/Button';
 
 function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) {
@@ -21,6 +21,8 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       isValid: true,
     },
   });
+  // States for the component list modal and the list itself
+  const [compsVisible, setCompsVisible] = useState(false);
   const [components, setComponents] = useState([]);
 
   // Set the state when an input is changed
@@ -33,37 +35,14 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     });
   }
 
+  //
+  function updateComponentHandler(components) {
+    setComponents(components);
+    setCompsVisible(false);
+  }
+
   const formIsInvalid = !inputs.name.isValid || !inputs.description.isValid || 
     !inputs.imageUri.isValid;
-
-  // Functions for handling the component list
-  const addComponent = () => {
-    const newId = components.length + 1;
-    const newComp = { id: newId, text: '' };
-
-    setComponents(currComps => [...currComps, newComp]);
-  }
-  const editComponent = (enteredText, position) => {
-    const filteredData = components.filter(item => item.id !== position);
-    const editedComponent = { id: position, text: enteredText };
-    const newData = [ ...filteredData, editedComponent ].sort((a, b) => a.id - b.id);
-
-    setComponents(newData);
-  }
-  const moveComponent = (direction) => {
-
-  }
-  const deleteComponent = () => {
-
-  }
-  const renderComponent = ({ item }) => {
-    return (
-      <ListItem
-        position={item.id} max={components.length} text={item.text}
-        onEdit={editComponent} onMove={moveComponent} onDelete={deleteComponent}
-      />
-    );
-  }
 
   return (
     <View style={styles.form}>
@@ -81,18 +60,17 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         value={inputs.description.value}
         isInvalid={!inputs.description.isValid}
       />
-      <FlatList
-        style={styles.componentList}
-        data={components}
-        keyExtractor={(item) => item.id}
-        renderItem={renderComponent}
+      <ComponentList
+        visible={compsVisible}
+        componentList={components}
+        onCancel={() => setCompsVisible(false)}
+        onUpdate={updateComponentHandler}
       />
-      <Button
-        color="#9000ff"
-        onPress={addComponent}
-      >
-        Add Component
-      </Button>
+      <View style={styles.componentButton}>
+        <Button color="#9000ff" onPress={() => setCompsVisible(true)}>
+          Update Component List
+        </Button>
+      </View>
     </View>
   );
 }
@@ -105,16 +83,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'darkred',
   },
-  buttons: {
-    flexDirection: 'row',
+  componentButton: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginVertical: 12,
   },
   button: {
     minWidth: 120,
     marginHorizontal: 8,
-  },
-  componentList: {
-    marginBottom: 12,
   },
 });
