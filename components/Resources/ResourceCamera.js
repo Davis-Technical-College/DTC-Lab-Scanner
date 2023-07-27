@@ -24,7 +24,7 @@ function ResourceCamera({ visible, active }) {
   // Return modal with camera
   return (
     <Modal visible={visible}>
-      {permissions == 'authorized' && device !== null ? 
+      {permissions == 'authorized' && device ? 
         <Camera
           style={StyleSheet.absoluteFill}
           device={device}
