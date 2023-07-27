@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import Input from '../UI/Input';
 import ComponentList from './ComponentList';
 import Button from '../UI/Button';
+import ResourceCamera from './ResourceCamera';
 
 function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) {
   // Create state for inputs
