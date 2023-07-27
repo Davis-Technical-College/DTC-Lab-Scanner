@@ -22,9 +22,11 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     },
   });
 
-  // States for the component list modal and the list itself
+  // States for the modal visibility and the components list
   const [compsVisible, setCompsVisible] = useState(false);
   const [components, setComponents] = useState([]);
+  const [camVisible, setCamVisible] = useState(false);
+  const [camActive, setCamActive] = useState(false);
 
   // Set the state when an input is changed
   function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -40,6 +42,12 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   function updateComponentHandler(newComponents) {
     setComponents(newComponents);
     setCompsVisible(false);
+  }
+
+  // Activate the camera modal and component
+  function cameraActivateHandler() {
+    setCamVisible(true);
+    setCamActive(true);
   }
 
   const formIsInvalid = !inputs.name.isValid || !inputs.description.isValid || 
@@ -72,6 +80,15 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
           Update Component List
         </Button>
       </View>
+      <View style={styles.imagePreview}>
+
+      </View>
+      <ResourceCamera visible={camVisible} active={camActive} />
+      <View style={styles.cameraButton}>
+        <Button color="#9000ff" onPress={cameraActivateHandler}>
+          Take Photo
+        </Button>
+      </View>
     </View>
   );
 }
@@ -89,8 +106,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: 12,
   },
-  button: {
-    minWidth: 120,
-    marginHorizontal: 8,
+  imagePreview: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    width: 300,
+    height: 300,
+    marginVertical: 12,
+    borderWidth: 2,
+    borderColor: '#13007c',
+  },
+  cameraButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 12,
   },
 });
