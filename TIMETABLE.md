@@ -1,4 +1,8 @@
 # Timetable
+### 2023-07-28
+- Switched to a different camera package to implement cropping
+- Implemented image preview for the taken photo
+
 ### 2023-07-27
 - Installed camera package, used for the following:
   - Taking a picture of the resource to be added or edited
