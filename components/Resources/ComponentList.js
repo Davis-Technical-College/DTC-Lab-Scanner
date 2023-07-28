@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Modal, View, FlatList, StyleSheet } from 'react-native';
 
 import ListItem from './ListItem';
@@ -8,9 +8,17 @@ function ComponentList({ visible, componentList, onCancel, onUpdate }) {
   // State for the components list
   const [components, setComponents] = useState(componentList);
 
+  // Ref for the components FlatList
+  const flatlistRef = useRef(null);
+
+  // Set local components state upon switching to the modal
   useEffect(() => {
     setComponents(componentList);
   }, [visible, componentList]);
+  // Scroll to the bottom when a new item is added
+  useEffect(() => {
+    flatlistRef.current?.scrollToEnd();
+  }, [components, flatlistRef]);
 
   // Functions for handling the component list
   const addComponent = () => {
@@ -72,6 +80,7 @@ function ComponentList({ visible, componentList, onCancel, onUpdate }) {
     <Modal visible={visible} animationType="slide">
       <View style={styles.listContainer}>
         <FlatList
+          ref={flatlistRef}
           data={components}
           keyExtractor={(item) => item.id}
           renderItem={renderComponent}
