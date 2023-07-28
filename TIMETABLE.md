@@ -1,4 +1,10 @@
 # Timetable
+### 2023-07-27
+- Installed camera package, used for the following:
+  - Taking a picture of the resource to be added or edited
+  - (Later) Scanning a QR code to check in a resource
+- Added button to open camera to resource management screen
+
 ### 2023-07-26
 - Added component list to form as separate modal
   - Includes buttons to add a new component, cancel the modification, or update the list
