@@ -2,6 +2,7 @@
 ### 2023-07-28
 - Switched to a different camera package to implement cropping
 - Implemented image preview for the taken photo
+- Added minor function to scroll to bottom of component list when adding an item
 
 ### 2023-07-27
 - Installed camera package, used for the following:
