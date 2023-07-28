@@ -62,3 +62,26 @@ function ResourceCamera({ visible, active }) {
 }
 
 export default ResourceCamera;
+
+const styles = StyleSheet.create({
+  cameraView: {
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  captureContainer: {
+    position: 'absolute',
+    paddingBottom: 30,
+  },
+  captureButton: {
+    width: 70,
+    height: 70,
+    backgroundColor: '#ff0000',
+    borderWidth: 4,
+    borderColor: '#ffffff',
+    borderRadius: 35,
+  },
+  capturePressed: {
+    backgroundColor: '#890000',
+    borderColor: '#ffffff',
+  },
+});
