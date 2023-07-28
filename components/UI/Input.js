@@ -21,6 +21,7 @@ export default Input;
 
 const styles = StyleSheet.create({
   inputContainer: {
+    width: '100%',
     marginVertical: 8,
   },
   label: {
