@@ -52,6 +52,9 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       cropping: true,
     }).then(image => {
       setTakenImage(image);
+    }).catch(err => {
+      console.log(err);
+      setTakenImage(null);
     });
   }
 
