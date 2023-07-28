@@ -124,6 +124,7 @@ android {
         manifestPlaceholders = [
             appAuthRedirectScheme: "io.identityserver.demo"
         ]
+        vectorDrawables.useSupportLibrary = true
     }
 
     splits {
