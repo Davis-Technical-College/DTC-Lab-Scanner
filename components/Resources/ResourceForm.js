@@ -97,6 +97,9 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
 export default ResourceForm;
 
 const styles = StyleSheet.create({
+  form: {
+    alignItems: 'center',
+  },
   errorText: {
     margin: 8,
     textAlign: 'center',
