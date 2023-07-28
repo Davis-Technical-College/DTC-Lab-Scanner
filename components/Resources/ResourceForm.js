@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
+import ImageCropPicker from 'react-native-image-crop-picker';
 
 import Input from '../UI/Input';
 import ComponentList from './ComponentList';
 import Button from '../UI/Button';
-import ResourceCamera from './ResourceCamera';
 
 function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) {
   // Create state for inputs
@@ -26,8 +26,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   // States for the modal visibility and the components list
   const [compsVisible, setCompsVisible] = useState(false);
   const [components, setComponents] = useState([]);
-  const [camVisible, setCamVisible] = useState(false);
-  const [camActive, setCamActive] = useState(false);
+  const [takenImage, setTakenImage] = useState(null);
 
   // Set the state when an input is changed
   function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -47,8 +46,13 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
 
   // Activate the camera modal and component
   function cameraActivateHandler() {
-    setCamVisible(true);
-    setCamActive(true);
+    ImageCropPicker.openCamera({
+      width: 300,
+      height: 300,
+      cropping: true,
+    }).then(image => {
+      setTakenImage(image);
+    });
   }
 
   const formIsInvalid = !inputs.name.isValid || !inputs.description.isValid || 
@@ -82,9 +86,12 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         </Button>
       </View>
       <View style={styles.imagePreview}>
-
+        {takenImage && <Image
+          style={{ width: 300, height: 300 }}
+          resizeMode='stretch'
+          source={{ uri: takenImage.path }}
+        />}
       </View>
-      <ResourceCamera visible={camVisible} active={camActive} />
       <View style={styles.cameraButton}>
         <Button color="#9000ff" onPress={cameraActivateHandler}>
           Take Photo
@@ -114,8 +121,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#ffffff',
-    width: 300,
-    height: 300,
+    width: 304,
+    height: 304,
     marginVertical: 12,
     borderWidth: 2,
     borderColor: '#13007c',
