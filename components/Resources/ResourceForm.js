@@ -88,9 +88,10 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     // Check for empty strings within components list
     if (componentsAreValid) {
       for (i = 0; i < components.length; i++) {
-        if (!!components[i]) {
+        const text = components[i].text;
+        if (text == '') {
           componentsAreValid = false;
-          return;
+          break;
         }
       }
     }
