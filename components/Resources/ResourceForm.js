@@ -97,8 +97,8 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     }
 
     // Run the submit function if all data is valid
-    if (nameIsValid && descriptionIsValid && imageUriIsValid && componentsAreValid) {
-      onSubmit(resourceData);
+    if (nameIsValid && descriptionIsValid && imagePathIsValid && componentsAreValid) {
+      await onSubmit(resourceData);
     }
   }
 
