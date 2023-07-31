@@ -1,4 +1,11 @@
 # Timetable
+### 2023-07-31
+- Tweaked UI components (e.g. changed form order)
+- Implemented Firebase cloud storage
+- Added submit functionality to form, which will...
+  - Upload an image to the cloud storage
+  - Add a record to the realtime database
+
 ### 2023-07-28
 - Switched to a different camera package to implement cropping
 - Implemented image preview for the taken photo
