@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     width: 304,
     height: 304,
-    marginVertical: 12,
+    marginTop: 12,
     borderWidth: 2,
     borderColor: '#13007c',
   },
