@@ -1,4 +1,3 @@
-import { utils } from '@react-native-firebase/app';
 import storage from '@react-native-firebase/storage';
 
 // Upload an image with the given uri to Firebase cloud storage
