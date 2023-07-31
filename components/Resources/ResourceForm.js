@@ -65,16 +65,16 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   async function submitHandler() {
     // Check that image uri is valid and upload it
     const imageUriIsValid = !!takenImage;
-    let path = '';
+    let imagePath = '';
     if (imageUriIsValid) {
-      path = await uploadImage(takenImage);
+      imagePath = await uploadImage(takenImage.path);
     }
 
     // Create data object
     const resourceData = {
       name: inputs.name.value,
       description: inputs.description.value,
-      imageUri: path,
+      imageUri: imagePath,
       components: components,
       currentUser: '',
       alert: [],
@@ -83,6 +83,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     // Check for validity in values
     const nameIsValid = !!inputs.name.value;
     const descriptionIsValid = !!inputs.description.value;
+    const imagePathIsValid = !!imagePath;
     let componentsAreValid = components.length > 0;
     // Check for empty strings within components list
     if (componentsAreValid) {
