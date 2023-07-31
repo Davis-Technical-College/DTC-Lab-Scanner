@@ -77,17 +77,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         value={inputs.description.value}
         isInvalid={!inputs.description.isValid}
       />
-      <ComponentList
-        visible={compsVisible}
-        componentList={components}
-        onCancel={() => setCompsVisible(false)}
-        onUpdate={updateComponentHandler}
-      />
-      <View style={styles.componentButton}>
-        <Button color="#9000ff" onPress={() => setCompsVisible(true)}>
-          Update Component List
-        </Button>
-      </View>
+
       <View style={styles.imagePreview}>
         {takenImage && <Image
           style={{ width: 300, height: 300 }}
@@ -99,6 +89,31 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         <Button color="#9000ff" onPress={cameraActivateHandler}>
           Take Photo
         </Button>
+      </View>
+
+      <ComponentList
+        visible={compsVisible}
+        componentList={components}
+        onCancel={() => setCompsVisible(false)}
+        onUpdate={updateComponentHandler}
+      />
+      <View style={styles.button}>
+        <Button color="#9000ff" onPress={() => setCompsVisible(true)}>
+          Update Component List
+        </Button>
+      </View>
+
+      <View style={styles.buttons}>
+        <View style={styles.button}>
+          <Button color="#9b0000" onPress={onCancel}>
+            Cancel
+          </Button>
+        </View>
+        <View style={styles.button}>
+          <Button color="#009b00" onPress={submitHandler}>
+            {submitButtonLabel}
+          </Button>
+        </View>
       </View>
     </View>
   );
