@@ -70,6 +70,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         value={inputs.name.value}
         isInvalid={!inputs.name.isValid}
       />
+
       <Input
         label="Description"
         multiline={true}
@@ -85,7 +86,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
           source={{ uri: takenImage.path }}
         />}
       </View>
-      <View style={styles.cameraButton}>
+      <View style={styles.button}>
         <Button color="#9000ff" onPress={cameraActivateHandler}>
           Take Photo
         </Button>
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'darkred',
   },
-  componentButton: {
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 12,
@@ -145,9 +146,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#13007c',
   },
-  cameraButton: {
+  buttons: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 12,
   },
 });
