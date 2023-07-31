@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import ImageCropPicker from 'react-native-image-crop-picker';
 
+import { uploadImage } from '../../util/cloud';
 import Input from '../UI/Input';
 import ComponentList from './ComponentList';
 import Button from '../UI/Button';
@@ -60,6 +61,44 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
 
   const formIsInvalid = !inputs.name.isValid || !inputs.description.isValid || 
     !inputs.imageUri.isValid;
+
+  async function submitHandler() {
+    // Check that image uri is valid and upload it
+    const imageUriIsValid = !!takenImage;
+    let path = '';
+    if (imageUriIsValid) {
+      path = await uploadImage(takenImage);
+    }
+
+    // Create data object
+    const resourceData = {
+      name: inputs.name.value,
+      description: inputs.description.value,
+      imageUri: path,
+      components: components,
+      currentUser: '',
+      alert: [],
+    };
+
+    // Check for validity in values
+    const nameIsValid = !!inputs.name.value;
+    const descriptionIsValid = !!inputs.description.value;
+    let componentsAreValid = components.length > 0;
+    // Check for empty strings within components list
+    if (componentsAreValid) {
+      for (i = 0; i < components.length; i++) {
+        if (!!components[i]) {
+          componentsAreValid = false;
+          return;
+        }
+      }
+    }
+
+    // Run the submit function if all data is valid
+    if (nameIsValid && descriptionIsValid && imageUriIsValid && componentsAreValid) {
+      onSubmit(resourceData);
+    }
+  }
 
   return (
     <View style={styles.form}>
