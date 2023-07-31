@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "368097266092",
+    "firebase_url": "https://dtc-lab-scanner-default-rtdb.firebaseio.com",
+    "project_id": "dtc-lab-scanner",
+    "storage_bucket": "dtc-lab-scanner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368097266092:android:b320671872c2ce978b1209",
+        "android_client_info": {
+          "package_name": "com.safetyflux.DTCLabScanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368097266092-veumt4bqdvu6n0j8ui8rbj6ds1v2sbvl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnv_RjwaDKhroq8zDYoLqqr6ihaoU6vhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368097266092-veumt4bqdvu6n0j8ui8rbj6ds1v2sbvl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
