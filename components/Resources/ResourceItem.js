@@ -47,20 +47,26 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    height: 120,
+    height: 126,
   },
   info: {
     flex: 2,
+    justifyContent: 'center',
+    marginLeft: 18,
     padding: 12,
   },
   title: {
+    marginTop: 12,
     color: '#000000',
     fontWeight: 'bold',
     fontSize: 20,
   },
-  user: {
+  userLabel: {
     color: '#000000',
     fontSize: 18,
+  },
+  user: {
+    color: '#5c5c5c',
   },
   numberContainer: {
     flexDirection: 'row',
@@ -68,6 +74,6 @@ const styles = StyleSheet.create({
   },
   number: {
     flex: 1,
-    padding: 12,
+    marginTop: 6,
   },
 });
