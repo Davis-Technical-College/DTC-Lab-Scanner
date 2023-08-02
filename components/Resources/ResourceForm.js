@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     height: 304,
     marginTop: 12,
     borderWidth: 2,
-    borderColor: '#13007c',
+    borderColor: '#000000',
   },
   buttons: {
     flexDirection: 'row',
