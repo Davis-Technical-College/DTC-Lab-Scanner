@@ -1,4 +1,10 @@
 # Timetable
+### 2023-08-02
+- Changed format of image URI in resource data
+- Created resource list
+  - Pressable items navigate to resource details
+- Created basic resource details page
+
 ### 2023-07-31
 - Tweaked UI components (e.g. changed form order)
 - Implemented Firebase cloud storage
