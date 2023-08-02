@@ -16,13 +16,15 @@ function ResourceItem({ resource, onSelect }) {
       <View style={styles.info}>
         <Text style={styles.title}>{resource.name}</Text>
         <Text style={styles.userLabel}>
-          Current User: <Text style={styles.user}>{currentUser}</Text>
+          Current User: <Text style={styles.light}>{currentUser}</Text>
         </Text>
         <View style={styles.numberContainer}>
           <Text style={styles.number}>
             Alerts: <Text style={alertStyle}>{numAlerts}</Text>
           </Text>
-          <Text style={styles.number}>Components: {numComponents}</Text>
+          <Text style={styles.number}>
+            Components: <Text style={styles.light}>{numComponents}</Text>
+          </Text>
         </View>
       </View>
     </Pressable>
@@ -65,8 +67,8 @@ const styles = StyleSheet.create({
     color: '#000000',
     fontSize: 18,
   },
-  user: {
-    color: '#5c5c5c',
+  light: {
+    color: '#777777',
   },
   numberContainer: {
     flexDirection: 'row',
