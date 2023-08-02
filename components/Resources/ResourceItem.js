@@ -3,8 +3,8 @@ import { Pressable, Image, View, Text, StyleSheet } from 'react-native';
 function ResourceItem({ resource, onSelect }) {
   // Set temporary variables for easier view
   const currentUser = !!resource.currentUser ? resource.currentUser : 'None';
-  const numAlerts = resource.alerts.length();
-  const numComponents = resource.components.length();
+  const numAlerts = !!resource.alerts ? resource.alerts.length : 0;
+  const numComponents = resource.components.length;
   const alertStyle = numAlerts > 0 ? { color: '#9b0000' } : { color: '#009b00'};
 
   return (
@@ -14,8 +14,10 @@ function ResourceItem({ resource, onSelect }) {
     >
       <Image style={styles.image} source={{ uri: resource.imageUri }} />
       <View style={styles.info}>
-        <Text style={styles.title}>{resource.title}</Text>
-        <Text style={styles.user}>Current User: {currentUser}</Text>
+        <Text style={styles.title}>{resource.name}</Text>
+        <Text style={styles.userLabel}>
+          Current User: <Text style={styles.user}>{currentUser}</Text>
+        </Text>
         <View style={styles.numberContainer}>
           <Text style={styles.number}>
             Alerts: <Text style={alertStyle}>{numAlerts}</Text>
