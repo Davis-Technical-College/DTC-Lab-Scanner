@@ -18,7 +18,8 @@ function ResourceList({ resources }) {
     return (
       <View style={styles.fallbackContainer}>
         <Text style={styles.fallbackText}>
-          No resources have been added yet. Press '+' to add one.
+          {`No resources have been added yet.
+          Press '+' to add one.`}
         </Text>
       </View>
     );
