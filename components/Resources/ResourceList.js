@@ -7,9 +7,9 @@ function ResourceList({ resources }) {
   const navigation = useNavigation();
 
   // Navigate to the ResourceDetails screen when a resource is pressed
-  function selectResourceHandler(id) {
+  function selectResourceHandler(resource) {
     navigation.navigate('ResourceDetails', {
-      resourceId: id
+      resource: resource,
     });
   }
 

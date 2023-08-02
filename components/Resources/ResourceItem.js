@@ -10,7 +10,7 @@ function ResourceItem({ resource, onSelect }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.item, pressed && styles.pressed]}
-      onPress={onSelect.bind(this, resource.id)}
+      onPress={onSelect.bind(this, resource)}
     >
       <Image style={styles.image} source={{ uri: resource.imageUri }} />
       <View style={styles.info}>
