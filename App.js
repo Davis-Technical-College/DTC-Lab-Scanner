@@ -30,6 +30,7 @@ import ManageResource from './screens/Data/Resources/ManageResource';
 // User data screen imports
 import AllUsers from './screens/Data/Users/AllUsers';
 import UserDetails from './screens/Data/Users/UserDetails';
+import ResourcesContextProvider from './store/resources-context';
 
 // Create navigators
 const AuthStack = createNativeStackNavigator();
@@ -200,7 +201,9 @@ function Navigation() {
   return (
     <NavigationContainer>
       {!authCtx.isAuthenticated && <AuthNav />}
-      {authCtx.isAuthenticated && <MainDrawer />}
+      {authCtx.isAuthenticated && <ResourcesContextProvider>
+        <MainDrawer />
+      </ResourcesContextProvider>}
     </NavigationContainer>
   );
 }
