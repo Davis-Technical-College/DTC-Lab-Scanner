@@ -77,7 +77,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       imageUri: imagePath,
       components: components,
       currentUser: '',
-      alert: [],
+      alerts: [],
     };
 
     // Check for validity in values

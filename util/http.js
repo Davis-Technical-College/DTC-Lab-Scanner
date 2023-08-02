@@ -16,7 +16,7 @@ export async function fetchResources() {
       imageUri: response.data[key].imageUri,
       components: response.data[key].components,
       currentUser: response.data[key].currentUser,
-      alert: response.data[key].alert,
+      alerts: response.data[key].alerts,
     };
     resources.push(resourceObj);
   }
