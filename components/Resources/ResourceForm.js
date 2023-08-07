@@ -18,16 +18,16 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       value: defaultValues ? defaultValues.description : '',
       isValid: true,
     },
-    imageUri: {
-      value: defaultValues ? defaultValues.imageUri : '',
-      isValid: true,
-    },
   });
 
   // States for the modal visibility and the components list
   const [compsVisible, setCompsVisible] = useState(false);
-  const [components, setComponents] = useState([]);
-  const [takenImage, setTakenImage] = useState(null);
+  const [components, setComponents] = useState(
+    !!defaultValues.components ? defaultValues.components : []
+  );
+  const [takenImage, setTakenImage] = useState(
+    !!defaultValues.imageUri ? defaultValues.imageUri : ''
+  );
 
   // Set the state when an input is changed
   function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -52,22 +52,19 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       height: 300,
       cropping: true,
     }).then(image => {
-      setTakenImage(image);
+      setTakenImage(image.path);
     }).catch(err => {
       console.log(err);
-      setTakenImage(null);
+      setTakenImage('');
     });
   }
-
-  const formIsInvalid = !inputs.name.isValid || !inputs.description.isValid || 
-    !inputs.imageUri.isValid;
 
   async function submitHandler() {
     // Check that image uri is valid and upload it
     const imageUriIsValid = !!takenImage;
     let imagePath = '';
     if (imageUriIsValid) {
-      imagePath = await uploadImage(takenImage.path);
+      imagePath = await uploadImage(takenImage);
     }
 
     // Create data object
@@ -124,7 +121,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
         {takenImage && <Image
           style={{ width: 300, height: 300 }}
           resizeMode='stretch'
-          source={{ uri: takenImage.path }}
+          source={{ uri: takenImage }}
         />}
       </View>
       <View style={styles.button}>
