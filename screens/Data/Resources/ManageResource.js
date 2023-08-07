@@ -34,7 +34,7 @@ function ManageResource({ route, navigation }) {
         </>
       ) : null,
     });
-  }, [navigation, isEditing])
+  }, [navigation, isEditing]);
 
   // Handle deleting resource
   async function deleteResourceHandler() {
