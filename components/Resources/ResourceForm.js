@@ -28,6 +28,7 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   const [takenImage, setTakenImage] = useState(
     !!defaultValues.imageUri ? defaultValues.imageUri : ''
   );
+  const [imageChanged, setImageChanged] = useState(false);
 
   // Set the state when an input is changed
   function inputChangedHandler(inputIdentifier, enteredValue) {
@@ -53,9 +54,9 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
       cropping: true,
     }).then(image => {
       setTakenImage(image.path);
+      setImageChanged(true);
     }).catch(err => {
       console.log(err);
-      setTakenImage('');
     });
   }
 
@@ -64,7 +65,11 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
     const imageUriIsValid = !!takenImage;
     let imagePath = '';
     if (imageUriIsValid) {
-      imagePath = await uploadImage(takenImage);
+      if (imageChanged) {
+        imagePath = await uploadImage(takenImage);
+      } else {
+        imagePath = takenImage;
+      }
     }
 
     // Create data object
