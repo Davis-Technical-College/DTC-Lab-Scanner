@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import {
   ScrollView,
   Image,
@@ -7,18 +7,26 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Button from '../../../components/UI/Button';
+import IconButton from '../../../components/UI/IconButton';
 
 function ResourceDetails({ route, navigation }) {
   // Get route params
   const resource = route.params.resource;
 
   // Set title based on resource name
-  useEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       title: resource.name,
+      headerRight: ({ tintColor }) => (
+        <>
+          <IconButton
+            icon="edit" size={22} color={tintColor}
+            onPress={editResourceHandler}
+          />
+        </>
+      ),
     });
-  }, []);
+  }, [navigation]);
 
   // Handle 'Edit Resource' button press
   function editResourceHandler() {
@@ -70,12 +78,6 @@ function ResourceDetails({ route, navigation }) {
           </Text>
         }
       </View>
-
-      <View style={styles.buttonsContainer}>
-        <Button onPress={editResourceHandler} color='#00418b'>
-          Edit Resource
-        </Button>
-      </View>
     </ScrollView>
   );
 }
@@ -121,10 +123,5 @@ const styles = StyleSheet.create({
   },
   component: {
     flexDirection: 'row',
-  },
-  buttonsContainer: {
-    alignItems: 'center',
-    marginTop: 24,
-    marginBottom: 48,
   },
 });
