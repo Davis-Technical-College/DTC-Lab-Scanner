@@ -23,10 +23,10 @@ function ResourceForm({ defaultValues, submitButtonLabel, onCancel, onSubmit }) 
   // States for the modal visibility and the components list
   const [compsVisible, setCompsVisible] = useState(false);
   const [components, setComponents] = useState(
-    !!defaultValues.components ? defaultValues.components : []
+    defaultValues ? defaultValues.components : []
   );
   const [takenImage, setTakenImage] = useState(
-    !!defaultValues.imageUri ? defaultValues.imageUri : ''
+    defaultValues ? defaultValues.imageUri : ''
   );
   const [imageChanged, setImageChanged] = useState(false);
 
