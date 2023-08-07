@@ -1,5 +1,12 @@
 import { useEffect } from 'react';
-import { ScrollView, Image, View, Text, StyleSheet } from 'react-native';
+import {
+  ScrollView,
+  Image,
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+} from 'react-native';
 
 function ResourceDetails({ route, navigation }) {
   // Get route params
@@ -11,6 +18,14 @@ function ResourceDetails({ route, navigation }) {
       title: resource.name,
     });
   }, []);
+
+  // Render a component in the details view
+  const renderItem = ({ item }) => {
+    <View style={styles.component}>
+      <Text style={styles.detailsBold}>{item.id}</Text>
+      <Text style={styles.details}>{item.text}</Text>
+    </View>
+  }
 
   return (
     <ScrollView>
@@ -27,6 +42,31 @@ function ResourceDetails({ route, navigation }) {
           <Text style={styles.detailsBold}>Current User: </Text>
           {!!resource.currentUser ? resource.currentUser : 'None'}
         </Text>
+      </View>
+      <View style={styles.listContainer}>
+        <Text style={styles.header}>Components</Text>
+        {resource.components.map((comp) => {
+          return (
+            <View style={styles.component} key={comp.id}>
+              <Text style={styles.detailsBold}>{comp.id}</Text>
+              <Text style={styles.details}>{comp.text}</Text>
+            </View>
+          );
+        })}
+      </View>
+      <View style={styles.listContainer}>
+        <Text style={styles.header}>Alerts</Text>
+        {
+          !!resource.alerts && resource.alerts > 0 ? 
+          resource.alerts.map((alert) => {
+            return (
+              <Text style={styles.details}>{alert}</Text>
+            );
+          }) :
+          <Text style={styles.details}>
+            There are no alerts at this time.
+          </Text>
+        }
       </View>
     </ScrollView>
   );
@@ -57,6 +97,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   detailsBold: {
+    fontSize: 18,
     fontWeight: 'bold',
+  },
+  listContainer: {
+    justifyContent: 'center',
+    marginVertical: 24,
+    paddingHorizontal: 48,
+  },
+  header: {
+    marginBottom: 4,
+    textAlign: 'center',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  component: {
+    flexDirection: 'row',
   },
 });
