@@ -24,7 +24,15 @@ function ManageResource({ route, navigation }) {
   // Implement useLayoutEffect to set title based on mode
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? 'Edit Resource' : 'Add Resource'
+      title: isEditing ? 'Edit Resource' : 'Add Resource',
+      headerRight: isEditing ? ({ tintColor }) => (
+        <>
+          <IconButton
+            icon="delete" size={22} color={tintColor}
+            onPress={deleteResourceHandler}
+          />
+        </>
+      ) : null,
     });
   }, [navigation, isEditing])
 
@@ -81,14 +89,6 @@ function ManageResource({ route, navigation }) {
         submitButtonLabel={isEditing ? 'Update' : 'Add'}
         onCancel={cancelHandler} onSubmit={confirmHandler}
       />
-      {isEditing && (
-        <View style={styles.deleteContainer}>
-          <IconButton
-            icon="trash" size={36} color="gray"
-            onPress={deleteResourceHandler}
-          />
-        </View>
-      )}
     </View>
   );
 }
