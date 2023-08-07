@@ -33,7 +33,7 @@ export async function addResource(resourceData) {
 }
 
 // Update a resource
-export async function updateResource(resourceData) {
+export async function updateResource(id, resourceData) {
   return axios.put(BACKEND_URL + `/resources/${id}.json`, resourceData);
 }
 
