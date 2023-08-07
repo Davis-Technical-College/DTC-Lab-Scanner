@@ -42,7 +42,7 @@ function ManageResource({ route, navigation }) {
     try {
       await deleteResource(editedResourceId);
       resourcesCtx.deleteResource(editedResourceId);
-      navigation.goBack();
+      navigation.navigate('AllResources');
     } catch (error) {
       setError('Could not delete resource - please try again later!');
       setIsSubmitting(false);
