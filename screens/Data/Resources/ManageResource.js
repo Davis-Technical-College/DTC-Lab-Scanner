@@ -61,12 +61,14 @@ function ManageResource({ route, navigation }) {
       if (isEditing) {
         resourcesCtx.updateResource(editedResourceId, resourceData);
         await updateResource(editedResourceId, resourceData);
+        navigation.navigate('ResourceDetails', {
+          resource: resourceData,
+        });
       } else {
         const id = await addResource(resourceData);
         resourcesCtx.addResource({ ...resourceData, id: id });
+        navigation.navigate('AllResources');
       }
-
-      navigation.goBack();
     } catch (error) {
       setError('Could not save data - please try again later!');
       setIsSubmitting(false);
