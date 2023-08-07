@@ -1,4 +1,9 @@
 # Timetable
+### 2023-08-07
+- Added component and alerts lists to resource details
+- Implemented edit functionality for resources
+- Implemented delete functionality for resources
+
 ### 2023-08-02
 - Changed format of image URI in resource data
 - Created resource list
