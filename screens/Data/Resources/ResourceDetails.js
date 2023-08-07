@@ -7,6 +7,8 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Button from '../../../components/UI/Button';
+
 function ResourceDetails({ route, navigation }) {
   // Get route params
   const resource = route.params.resource;
@@ -17,6 +19,13 @@ function ResourceDetails({ route, navigation }) {
       title: resource.name,
     });
   }, []);
+
+  // Handle 'Edit Resource' button press
+  function editResourceHandler() {
+    navigation.navigate('ManageResource', {
+      resourceId: resource.id,
+    });
+  }
 
   return (
     <ScrollView>
@@ -34,6 +43,7 @@ function ResourceDetails({ route, navigation }) {
           {!!resource.currentUser ? resource.currentUser : 'None'}
         </Text>
       </View>
+
       <View style={styles.listContainer}>
         <Text style={styles.header}>Components</Text>
         {resource.components.map((comp) => {
@@ -45,6 +55,7 @@ function ResourceDetails({ route, navigation }) {
           );
         })}
       </View>
+
       <View style={styles.listContainer}>
         <Text style={styles.header}>Alerts</Text>
         {
@@ -59,6 +70,12 @@ function ResourceDetails({ route, navigation }) {
           </Text>
         }
       </View>
+
+      <View style={styles.buttonsContainer}>
+        <Button onPress={editResourceHandler} color='#00418b'>
+          Edit Resource
+        </Button>
+      </View>
     </ScrollView>
   );
 }
@@ -70,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 50,
+    marginVertical: 48,
   },
   image: {
     width: '80%',
@@ -104,5 +121,10 @@ const styles = StyleSheet.create({
   },
   component: {
     flexDirection: 'row',
+  },
+  buttonsContainer: {
+    alignItems: 'center',
+    marginTop: 24,
+    marginBottom: 48,
   },
 });
