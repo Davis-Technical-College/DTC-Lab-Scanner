@@ -4,7 +4,6 @@ import {
   Image,
   View,
   Text,
-  FlatList,
   StyleSheet,
 } from 'react-native';
 
@@ -18,14 +17,6 @@ function ResourceDetails({ route, navigation }) {
       title: resource.name,
     });
   }, []);
-
-  // Render a component in the details view
-  const renderItem = ({ item }) => {
-    <View style={styles.component}>
-      <Text style={styles.detailsBold}>{item.id}</Text>
-      <Text style={styles.details}>{item.text}</Text>
-    </View>
-  }
 
   return (
     <ScrollView>
