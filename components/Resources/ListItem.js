@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import IconButton from '../UI/IconButton';
 
 function ListItem({ position, max, text, onEdit, onMove, onDelete }) {
+  // Connect ListItem buttons to functions from ComponentList
   const updateComponentHandler = (enteredText) => {
     onEdit(enteredText, position);
   }
@@ -24,6 +25,7 @@ function ListItem({ position, max, text, onEdit, onMove, onDelete }) {
         onChangeText={updateComponentHandler}
       />
 
+      {/* Move component up ONLY if not already on top */}
       {position > 1 ? <IconButton
         icon="up" size={24} color="#000000"
         onPress={() => moveComponentHandler(-1)}
@@ -31,6 +33,7 @@ function ListItem({ position, max, text, onEdit, onMove, onDelete }) {
         icon="up" size={24} color="#dadada"
       />}
 
+      {/* Move component down ONLY if not already on bottom */}
       {position < max ? <IconButton
         icon="down" size={24} color="#000000"
         onPress={() => moveComponentHandler(1)}

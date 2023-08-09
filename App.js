@@ -63,6 +63,7 @@ function ResourceStack() {
           title: 'Resources',
           headerLeft: ({ tintColor }) => (
             <>
+              {/* Add drawer button since the resource stack header overrides the drawer */}
               <IconButton
                 styleOverride={{ marginLeft: -16, marginRight: 16 }}
                 icon="menuunfold" size={22} color={tintColor}
@@ -72,6 +73,7 @@ function ResourceStack() {
           ),
           headerRight: ({ tintColor }) => (
             <>
+              {/* Button to add a new resource */}
               <IconButton
                 icon="plus" size={22} color={tintColor}
                 onPress={() => navigation.navigate('ManageResource')}
@@ -138,6 +140,7 @@ function MainDrawer() {
     screenOptions={({ navigation }) => ({
       headerLeft: ({ tintColor }) => (
         <>
+          {/* Add same drawer button from above for consistency */}
           <IconButton
             icon="menuunfold" size={22} color={tintColor}
             onPress={() => navigation.toggleDrawer()}
@@ -220,6 +223,7 @@ function Root() {
       const storedLevel = await AsyncStorage.getItem('level');
       const storedName = await AsyncStorage.getItem('username');
 
+      // If items are already present in AsyncStorage, authenticate immediately
       if (storedToken, storedLevel, storedName) {
         authCtx.authenticate(storedToken, storedLevel, storedName);
       }

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Realtime database URL
 const BACKEND_URL = 'https://dtc-lab-scanner-default-rtdb.firebaseio.com';
 
 // Fetch the list of resources

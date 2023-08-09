@@ -5,16 +5,18 @@ import Config from 'react-native-config';
 
 import { AuthContext } from '../../store/auth-context';
 
+// Get client ID and secret from .env file
 const id = Config.CLIENT_ID;
 const secret = Config.CLIENT_SECRET;
 
+// Set up credentials object for AzureInstance
 const CREDENTIALS = {
   client_id: id,
   client_secret: secret,
   redirect_uri: 'https://localhost:3000',
   scope: 'User.Read',
 };
-
+// Create new AzureInstance using credentials
 const Instance = new AzureInstance(CREDENTIALS);
 
 function Login () {
@@ -22,6 +24,7 @@ function Login () {
   const [loggingIn, setLoggingIn] = useState(false);
 
   const onLoginSuccess = async () => {
+    // Set temp variables for the AuthContext
     let username = '';
     let token = '';
     let userLevel = '';
@@ -49,6 +52,7 @@ function Login () {
     });
   }
 
+  // While logging in, return the AzureLoginView
   if (loggingIn) {
     return (
       <AzureLoginView
@@ -61,6 +65,7 @@ function Login () {
     );
   }
 
+  // While NOT logging in, return a simple screen with a button
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
