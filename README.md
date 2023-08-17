@@ -1,5 +1,5 @@
 # DTC-Lab-Scanner
-\[DEPRECATED\] My capstone project for the Software Development program at Davis Technical College. An app used for checking out lab kits and other resources from the Cybersecurity and Software Development classrooms.
+An app used for checking out lab kits and other resources from the Cybersecurity and Software Development classrooms.
 
 # Capstone Documentation
 - [Project Outline](https://github.com/SafetyFlux/DTC-Lab-Scanner/blob/main/OUTLINE.md)
