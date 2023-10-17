@@ -21,12 +21,16 @@ import IconButton from './components/UI/IconButton';
 
 // Main screens imports
 import Overview from './screens/Main/Overview';
+// THIS IS BREAKING THE BUILD ------------------------------------------------------------------------
 import Login from './screens/Main/Login';
+// THIS IS BREAKING THE BUILD ------------------------------------------------------------------------
 import ScanCode from './screens/Main/ScanCode';
 // Resource data screen imports
 import AllResources from './screens/Data/Resources/AllResources';
 import ResourceDetails from './screens/Data/Resources/ResourceDetails';
-import ManageResource from './screens/Data/Resources/ManageResource';
+// THIS IS BREAKING THE BUILD ------------------------------------------------------------------------
+// import ManageResource from './screens/Data/Resources/ManageResource';
+// THIS IS BREAKING THE BUILD ------------------------------------------------------------------------
 // User data screen imports
 import AllUsers from './screens/Data/Users/AllUsers';
 import UserDetails from './screens/Data/Users/UserDetails';
@@ -197,64 +201,64 @@ function MainDrawer() {
   );
 }
 
-// Container for navigation; state is dependent on user level and authentication
-function Navigation() {
-  const authCtx = useContext(AuthContext);
+// // Container for navigation; state is dependent on user level and authentication
+// function Navigation() {
+//   const authCtx = useContext(AuthContext);
 
-  return (
-    <NavigationContainer>
-      {!authCtx.isAuthenticated && <AuthNav />}
-      {authCtx.isAuthenticated && <ResourcesContextProvider>
-        <MainDrawer />
-      </ResourcesContextProvider>}
-    </NavigationContainer>
-  );
-}
+//   return (
+//     <NavigationContainer>
+//       {!authCtx.isAuthenticated && <AuthNav />}
+//       {authCtx.isAuthenticated && <ResourcesContextProvider>
+//         <MainDrawer />
+//       </ResourcesContextProvider>}
+//     </NavigationContainer>
+//   );
+// }
 
-// Root function to handle the stored token and loading screen
-function Root() {
-  const [isTryingLogin, setIsTryingLogin] = useState(true);
-  const authCtx = useContext(AuthContext);
+// // Root function to handle the stored token and loading screen
+// function Root() {
+//   const [isTryingLogin, setIsTryingLogin] = useState(true);
+//   const authCtx = useContext(AuthContext);
 
-  // Fetch the token for login
-  useEffect(() => {
-    async function fetchToken() {
-      const storedToken = await AsyncStorage.getItem('token');
-      const storedLevel = await AsyncStorage.getItem('level');
-      const storedName = await AsyncStorage.getItem('username');
+//   // Fetch the token for login
+//   useEffect(() => {
+//     async function fetchToken() {
+//       const storedToken = await AsyncStorage.getItem('token');
+//       const storedLevel = await AsyncStorage.getItem('level');
+//       const storedName = await AsyncStorage.getItem('username');
 
-      // If items are already present in AsyncStorage, authenticate immediately
-      if (storedToken, storedLevel, storedName) {
-        authCtx.authenticate(storedToken, storedLevel, storedName);
-      }
+//       // If items are already present in AsyncStorage, authenticate immediately
+//       if (storedToken, storedLevel, storedName) {
+//         authCtx.authenticate(storedToken, storedLevel, storedName);
+//       }
 
-      setIsTryingLogin(false);
-    }
+//       setIsTryingLogin(false);
+//     }
 
-    fetchToken();
-  }, []);
+//     fetchToken();
+//   }, []);
 
-  // Return splash screen while waiting for login
-  if (isTryingLogin) {
-    SplashScreen.preventAutoHideAsync();
-  }
+//   // Return splash screen while waiting for login
+//   if (isTryingLogin) {
+//     SplashScreen.preventAutoHideAsync();
+//   }
 
-  SplashScreen.hideAsync();
-  return <Navigation />;
-}
+//   SplashScreen.hideAsync();
+//   return <Navigation />;
+// }
 
-// Main App export
-export default function App() {
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="dark" />
+// // Main App export
+// export default function App() {
+//   return (
+//     <GestureHandlerRootView style={{ flex: 1 }}>
+//       <StatusBar style="dark" />
 
-      <AuthContextProvider>
-        <Root />
-      </AuthContextProvider>
-    </GestureHandlerRootView>
-  );
-}
+//       <AuthContextProvider>
+//         <Root />
+//       </AuthContextProvider>
+//     </GestureHandlerRootView>
+//   );
+// }
 
 // StyleSheet
 const styles = StyleSheet.create({
@@ -264,3 +268,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+export default function App() {
+  return (
+    <View>
+
+    </View>
+  );
+};

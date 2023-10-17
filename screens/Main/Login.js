@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
+// import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
 import Config from 'react-native-config';
 
 import { AuthContext } from '../../store/auth-context';
@@ -17,7 +17,7 @@ const CREDENTIALS = {
   scope: 'User.Read',
 };
 // Create new AzureInstance using credentials
-const Instance = new AzureInstance(CREDENTIALS);
+// const Instance = new AzureInstance(CREDENTIALS);
 
 function Login () {
   const authCtx = useContext(AuthContext);
