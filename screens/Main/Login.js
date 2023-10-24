@@ -1,28 +1,41 @@
 import { useContext, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 // import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
+import { authorize, refresh, revoke } from 'react-native-app-auth';
 import Config from 'react-native-config';
 
 import { AuthContext } from '../../store/auth-context';
+import { Value } from 'react-native-reanimated';
 
-// Get client ID and secret from .env file
-const id = Config.CLIENT_ID;
-const secret = Config.CLIENT_SECRET;
-
-// Set up credentials object for AzureInstance
-const CREDENTIALS = {
-  client_id: id,
-  client_secret: secret,
-  redirect_uri: 'https://localhost:3000',
-  scope: 'User.Read',
+const config = {
+  // issuer: process.env.AZURE_ISSUER,
+  // clientId: process.env.AZURE_CLIENT_ID,
+  // redirectUrl: process.env.AZURE_REDIRECT_URL,
+  // clientSecret: process.env.AZURE_CLIENT_SECRET,  
+  issuer: 'https://login.microsoftonline.com/common/oauth2/nativeclient',
+  clientId: '3bbf6b84-2d32-4341-a6d7-d24b0280bed8',
+  redirectUrl: 'https://localhost:3000',
+  // clientSecret: 'dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc',  
+  scopes: ['User.Read'],
 };
-// Create new AzureInstance using credentials
-// const Instance = new AzureInstance(CREDENTIALS);
+
+
 
 function Login () {
   const authCtx = useContext(AuthContext);
   const [loggingIn, setLoggingIn] = useState(false);
+  const [usernameValue, setUsernameValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
 
+  const doLogin = async () => {
+    try{
+      const result = await authorize(config);
+      console.log('Azure Auth Result:', result);
+    } catch (error) {
+      console.error('Azure Auth Error:', error);
+    }
+    console.log('Button Pressed')
+  }
   const onLoginSuccess = async () => {
     // Set temp variables for the AuthContext
     let username = '';
@@ -55,13 +68,14 @@ function Login () {
   // While logging in, return the AzureLoginView
   if (loggingIn) {
     return (
-      <AzureLoginView
-        azureInstance={Instance}
-        loadingMessage="Requesting access token"
-        onSuccess={onLoginSuccess}
-        onCancel={() => console.log('Cancelled')}
-        onFailure={() => console.log('Login failed')}
-      />
+      <View style={styles.container}>
+        <Text style={styles.text}>Please enter your Davis Tech credentials</Text>
+        <TextInput style={styles.logInField} placeholder='12340000@davistech.edu' onChangeText={newText => setUsernameValue(newText)}></TextInput>
+        <TextInput style={styles.logInField} placeholder='password' secureTextEntry={true} onChangeText={newText => setPasswordValue(newText)}></TextInput>
+        <TouchableOpacity style={styles.logInButton} onPress={doLogin}>
+          <Text sstyle={styles.text}>Log In</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 
@@ -70,8 +84,8 @@ function Login () {
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
-          This apps requires a Microsoft account with Davis Technical College.
-          If you do not have one or forgot your login information, please contact an administrator.
+          This app requires a Davis Tech Active Directory Account. To sign in, use your email and password.
+          This will be your student ID followed by @davistech.edu. 
         </Text>
       </View>
       <View style={styles.buttonContainer}>
@@ -103,5 +117,22 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     width: '20%',
+  },
+  logInField: {
+    width: '60%',
+    height: 40,
+    borderWidth: 1,
+    fontSize: 20,
+    borderRadius: 5,
+    padding: 5,
+    marginTop: 30
+  },
+  logInButton: {
+    marginTop: 30,
+    width: 90,
+    borderWidth: 1,
+    padding: 10,
+    alignItems: 'center',
+    borderRadius: 5
   },
 });
