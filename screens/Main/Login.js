@@ -1,24 +1,21 @@
 import { useContext, useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-// import { AzureInstance, AzureLoginView } from '@shedaltd/react-native-azure-ad-2';
 import { authorize, refresh, revoke } from 'react-native-app-auth';
 import Config from 'react-native-config';
 
 import { AuthContext } from '../../store/auth-context';
-import { Value } from 'react-native-reanimated';
 
 const config = {
-  // issuer: process.env.AZURE_ISSUER,
-  // clientId: process.env.AZURE_CLIENT_ID,
-  // redirectUrl: process.env.AZURE_REDIRECT_URL,
-  // clientSecret: process.env.AZURE_CLIENT_SECRET,  
-  issuer: 'https://login.microsoftonline.com/common/oauth2/nativeclient',
-  clientId: '3bbf6b84-2d32-4341-a6d7-d24b0280bed8',
-  redirectUrl: 'https://localhost:3000',
-  // clientSecret: 'dt68Q~6YsImCMuIQZ12iLgiLPDXabxYWwMF~Sbxc',  
-  scopes: ['User.Read'],
+  clientId: "3bbf6b84-2d32-4341-a6d7-d24b0280bed8",
+  redirectUrl: "https://localhost:19000",
+  serviceConfiguration: {
+    authorizationEndpoint:
+      "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+    tokenEndpoint: "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
+  },
+  
+  scopes: ["User.Read"],
 };
-
 
 
 function Login () {
@@ -34,7 +31,7 @@ function Login () {
     } catch (error) {
       console.error('Azure Auth Error:', error);
     }
-    console.log('Button Pressed')
+    console.log('Button Pressed' + config)
   }
   const onLoginSuccess = async () => {
     // Set temp variables for the AuthContext
