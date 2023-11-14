@@ -24,21 +24,28 @@ function Login () {
   const [usernameValue, setUsernameValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
 
-  const doLogin = async () => {
-    try{
-      const result = await authorize(config);
-      console.log('Azure Auth Result:', result);
+  const loginWithUsernamePassword = async (usernameValue, passwordValue) => {
+    try {
+      const result = await authorize({
+        ...config,
+        // Add username and password to the tokenEndpoint params
+        tokenEndpointParameters: {
+          username: usernameValue,
+          password: passwordValue,
+        },
+        usePKCE: false, // ROPC does not use PKCE
+      });
+      console.log('Authorization Result:', result);
     } catch (error) {
-      console.error('Azure Auth Error:', error);
+      console.error('Authorization Error:', error);
     }
-    console.log('Button Pressed' + config)
-  }
+  };
   const onLoginSuccess = async () => {
     // Set temp variables for the AuthContext
     let username = '';
     let token = '';
     let userLevel = '';
-
+ 
     await Instance.getUserInfo().then(result => {
       // Get name, token, and email address from result
       username = `${result.givenName} ${result.surname}`;
@@ -69,7 +76,8 @@ function Login () {
         <Text style={styles.text}>Please enter your Davis Tech credentials</Text>
         <TextInput style={styles.logInField} placeholder='12340000@davistech.edu' onChangeText={newText => setUsernameValue(newText)}></TextInput>
         <TextInput style={styles.logInField} placeholder='password' secureTextEntry={true} onChangeText={newText => setPasswordValue(newText)}></TextInput>
-        <TouchableOpacity style={styles.logInButton} onPress={doLogin}>
+        <TouchableOpacity style={styles.logInButton} 
+        onPress={() => loginWithUsernamePassword(usernameValue, passwordValue)}>
           <Text sstyle={styles.text}>Log In</Text>
         </TouchableOpacity>
       </View>
