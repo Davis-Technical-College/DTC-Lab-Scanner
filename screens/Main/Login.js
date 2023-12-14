@@ -2,8 +2,6 @@ import { useContext, useState } from 'react';
 import { View, Text, Button, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import { AuthContext } from '../../store/auth-context';
 
-
-
 function Login() {
   const [loggingIn, setLoggingIn] = useState(false);
   const [usernameValue, setUsernameValue] = useState('');

@@ -1,15 +1,16 @@
 # To-Do List
-### Next
-- Implement cleanup functions for both user and cloud storage
-  - Remove unused images to free storage space
+### Minimum functionality
+- Finish authentication flow with Entra ID
+- Get the resources set up according with project manager's wishes
+- Set up checkin/out for students
+- Set up an overview screen for admins.
 
-### After
-- Add security rules to the Firebase storage and realtime database
-- Improve form validation for resource management
+### Additional Functionality 
+- Photos for resources
+- QR scanning
+  + Should scan barcode/qr on resources. (maybe also student ID?)
 
-### Later
-- Add checkout functionality for regular users
-- Show checkout history on the resource details screen
-- Add user list for administrators, based on active users
-  - An active user is one who has checked out a resource in the last 3 months
-  - Will also have checkout history, but per user rather than per resource
+### Polishing needed
+- Auth level based on group membership in Entra ID
+  - PM expressed interest in teachers being identified by their groups in the AD
+  - Current auth level is decided by a regex in the login.js file.

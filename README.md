@@ -30,3 +30,14 @@ Login uses a package that connects to an Azure app within the Davis Technical Co
    - .env, line 1: CLIENT_ID => Application (client) ID for your Azure app, shown in the overview
    - .env, line 2: CLIENT_SECRET => The secret you just generated
    - Login.js, line 39 (optional): If you are a student and wish to have admin access DURING TESTING, replace the email with your own. It is not advised to keep this block of code in the release
+
+
+# Student 2: James Sales
+I picked this project up in an attempt to finish it but the project was unable to launch due to some outdated node modules and without knowing which versions worked where I was unable to get it to work the way it was. The main issues causing the app to be broken was the previous authentication workflow utilizing a node package which was broken. The second part broken was the workflow to submit and read data from the database, specifically the photo portion of the application.
+
+
+## Progress I have made:
+The project was broken when I started. I had to prune a bunch of node modules to get it to launch. The main ones were the auth package and the ones associated with the interface for the Firebase RTDB.  I have been working on going through all of the packages trying to find one that worked for Azure (which is now Entra ID) but none of them worked out. I ended up swapping to a generic HTTP request and just getting a token back through that method but I keep running into different errors saying my username or password is incorrect. (see definition of insanity)... 
+
+
+I also tried to get a test user as I have had to reset my password around 20 times in testing this. I would highly recommend asking for this again and seeing if you can convince the IT department to make it have zero securities as far as locking up and requiring a password reset. It doesn't need to have any permissions besides being an active user in the Entra ID service.
